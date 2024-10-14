@@ -135,8 +135,8 @@ const navigation = {
     },
   ],
   pages: [
-    { name: 'Company', href: '#' },
-    { name: 'Stores', href: '#' },
+    { name: 'Thương hiệu', href: '#' },
+    { name: 'Cửa hàng', href: '#' },
   ],
 }
 
@@ -254,10 +254,10 @@ export default function Navigation() {
               <a href="#" className="-m-2 flex items-center p-2">
                 <img
                   alt=""
-                  src="https://tailwindui.com/plus/img/flags/flag-canada.svg"
+                  src="https://i.pinimg.com/enabled_hi/564x/22/6f/1c/226f1c80df3f9499360789a680523e61.jpg"
                   className="block h-auto w-5 flex-shrink-0"
                 />
-                <span className="ml-3 block text-base font-medium text-gray-900">CAD</span>
+                <span className="ml-3 block text-base font-medium text-gray-900">VND</span>
                 <span className="sr-only">, change currency</span>
               </a>
             </div>
@@ -392,10 +392,10 @@ export default function Navigation() {
                   <a href="#" className="flex items-center text-gray-700 hover:text-gray-800">
                     <img
                       alt=""
-                      src="https://tailwindui.com/plus/img/flags/flag-canada.svg"
+                      src="https://i.pinimg.com/enabled_hi/564x/22/6f/1c/226f1c80df3f9499360789a680523e61.jpg"
                       className="block h-auto w-5 flex-shrink-0"
                     />
-                    <span className="ml-3 block text-sm font-medium">CAD</span>
+                    <span className="ml-3 block text-sm font-medium">VND</span>
                     <span className="sr-only">, change currency</span>
                   </a>
                 </div>
