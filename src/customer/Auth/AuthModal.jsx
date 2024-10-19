@@ -19,7 +19,7 @@ const style = {
 };
 
 const AuthModal = ({ open, handleClose }) => {
-  //const location = useLocation();
+  const location = useLocation();
   return (
     <div>
       <Modal
@@ -29,8 +29,7 @@ const AuthModal = ({ open, handleClose }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {/*{location.pathname==="login" ? <LoginForm/> : <RegisterForm />}*/}
-          <LoginForm/>       
+          {location.pathname==="/login" ? <LoginForm/> : <RegisterForm />}      
         </Box>
       </Modal>
     </div>

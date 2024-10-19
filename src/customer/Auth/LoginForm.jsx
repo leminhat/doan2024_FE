@@ -4,8 +4,7 @@ import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-  const navigate = () =>{
-  } //useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -62,7 +61,7 @@ const LoginForm = () => {
       <div className="flex justify-center flex-col items-center">
         <div className="py-3 flex items-center">
           <p>Bạn chưa có tài khoản?</p>
-          <Button onClick={()=>navigate("register")} className='ml-5' size='small'>Đăng ký</Button>
+          <Button onClick={()=>navigate("/register")} className='ml-5' size='small'>Đăng ký</Button>
         </div>
       </div>
     </div>
