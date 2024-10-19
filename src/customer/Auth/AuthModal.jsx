@@ -1,8 +1,9 @@
-import React from "react";
-import { Modal, Box, Typography } from "@mui/material";
-import RegisterForm from "./RegisterForm";
-import { useLocation } from "react-router-dom";
 import LoginForm from "./LoginForm";
+import React from "react";
+import RegisterForm from "./RegisterForm";
+import { Box, Modal, Typography } from "@mui/material";
+import { useLocation } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -22,14 +23,14 @@ const AuthModal = ({ open, handleClose }) => {
   return (
     <div>
       <Modal
-        open={true}
+        open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {/*location.pathname==="login" ? <LoginForm/> : <RegisterForm />*/}   
-          <RegisterForm />       
+          {/*{location.pathname==="login" ? <LoginForm/> : <RegisterForm />}*/}
+          <LoginForm/>       
         </Box>
       </Modal>
     </div>

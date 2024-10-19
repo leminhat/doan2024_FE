@@ -1,19 +1,18 @@
-import React from "react";
 import Grid from "@mui/material/Grid";
+import React from "react";
 import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-  const navigate = useNavigate();
-  
+  const navigate = () =>{
+  } //useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
     
     const userData = {
-      firstName:data.get("firstName"),
-      lastName: data.get("lastName"),
       email:data.get("email"),
       password:data.get("password"),
     }
@@ -54,7 +53,7 @@ const LoginForm = () => {
               size="large"
               sx={{ padding: ".8rem 0", bgcolor: "#9155FD" }}
             >
-              Login
+              Đăng nhập
             </Button>
           </Grid>
         </Grid>
@@ -62,8 +61,8 @@ const LoginForm = () => {
 
       <div className="flex justify-center flex-col items-center">
         <div className="py-3 flex items-center">
-          <p>Bạn đã có tài khoản?</p>
-          <Button onClick={()=>navigate("register")} className='ml-5' size='small'>Đăng nhập</Button>
+          <p>Bạn chưa có tài khoản?</p>
+          <Button onClick={()=>navigate("register")} className='ml-5' size='small'>Đăng ký</Button>
         </div>
       </div>
     </div>
