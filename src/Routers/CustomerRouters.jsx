@@ -1,7 +1,7 @@
-import Footer from "../components/Footer/Footer";
-import HomePage from "../pages/HomePage/HomePage";
-import Navigation from "../components/Navigation/Navigation";
-import Product from "../components/Product/Product";
+import Footer from "../customer/components/Footer/Footer";
+import HomePage from "../customer/pages/HomePage/HomePage";
+import Navigation from "../customer/components/Navigation/Navigation";
+import Product from "../customer/components/Product/Product";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
