@@ -1,8 +1,10 @@
 "use client";
+import FilterListIcon from "@mui/icons-material/FilterList";
 import Productcard from "./Productcard";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { mens_kurta } from "../../../Data/mens_kurta";
 import { filters, singleFilter } from "./FilterData";
 
@@ -38,6 +40,38 @@ function classNames(...classes) {
 
 export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const location=useLocation()
+  const navigate = useNavigate()
+
+  const handleFilter=(value, sectionId)=>{
+    const searchParamms= new URLSearchParams(location.search)
+
+    let filterValue=searchParamms.getAll(sectionId)
+    if(filterValue.length > 0 && filterValue[0].split(",").includes(value)){
+      filterValue=filterValue[0].split(",").filter((item)=>item!==value);
+
+      if(filterValue.length===0){
+        searchParamms.delete(sectionId)
+      }
+    } 
+    else{
+      filterValue.push(value)
+    }
+
+    if(filterValue.length>0){
+      searchParamms.set(sectionId,filterValue.join(","));
+      
+    }
+    const query = searchParamms.toString();
+    navigate({search:`${query}`})
+  }
+
+  const handleRatioFilterChange=(e,sectionId)=>{
+    const searchParamms= new URLSearchParams(location.search)
+    searchParamms.set(sectionId,e.target.value)
+    const query = searchParamms.toString();
+    navigate({search:`${query}`})
+  }
 
   return (
     <div className="bg-white">
@@ -238,7 +272,13 @@ export default function Product() {
             </h2>
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
-              {/* Filters */}
+              <div>
+                <div className="py-7 flex justify-between items-center">
+                  <h1 className="text-lg opacity-50 font-bold">Filters</h1>
+                  <FilterListIcon/>
+                </div>
+              
+
               <form className="hidden lg:block">
                 {filters.map((section) => (
                   <Disclosure
@@ -248,9 +288,9 @@ export default function Product() {
                   >
                     <h3 className="-mx-2 -my-3 flow-root">
                       <DisclosureButton className="group flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
-                        <span className="font-medium text-gray-900">
+                        <FormLabel sx={{ color: 'black', fontWeight: 'bold' }} id={`filter-${section.id}`}>
                           {section.name}
-                        </span>
+                        </FormLabel>
                         <span className="ml-6 flex items-center">
                           <PlusIcon
                             aria-hidden="true"
@@ -268,6 +308,7 @@ export default function Product() {
                         {section.options.map((option, optionIdx) => (
                           <div key={option.value} className="flex items-center">
                             <input
+                              onChange={()=>handleFilter(option.value, section.id)}
                               defaultValue={option.value}
                               defaultChecked={option.checked}
                               id={`filter-mobile-${section.id}-${optionIdx}`}
@@ -289,26 +330,29 @@ export default function Product() {
                 ))}
 
                 {singleFilter.map((section) => (
-                  <Disclosure key={section.id} as="div" className="border-b border-gray-200 py-6">
-                    <FormControl>
+                  <Disclosure key={section.id} as="div" className="border-b border-gray-200 py-6">                    
                     <h3 className="-my-3 flow-root">
                       <DisclosureButton className="group flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
                         {/* <span className="font-medium "></span> */}
-                        <FormLabel className='text-gray-900' id="demo-radio-buttons-group-label">{section.name}</FormLabel>
+                        <FormLabel sx={{ color: 'black', fontWeight: 'bold' }}
+                        className='text-gray-900' id="demo-radio-buttons-group-label">{section.name}</FormLabel>
                         <span className="ml-6 flex items-center">
-                          <PlusIcon
-                            aria-hidden="true"
-                            className="h-5 w-5 group-data-[open]:hidden"
-                          />
                           <MinusIcon
                             aria-hidden="true"
                             className="h-5 w-5 [.group:not([data-open])_&]:hidden"
                           />
+                          <PlusIcon
+                            aria-hidden="true"
+                            className="h-5 w-5 group-data-[open]:hidden"
+                          />
+                          
                         </span>
                       </DisclosureButton>
                     </h3>
+
                     <DisclosurePanel className="pt-6">
                       <div className="space-y-4">
+                      <FormControl>
                       <RadioGroup
                             aria-labelledby="demo-radio-buttons-group-label"
                             defaultValue="female"
@@ -316,17 +360,20 @@ export default function Product() {
                           >
                         {section.options.map((option, optionIdx) => (
                           <>
-                            <FormControlLabel value={option.id} control={<Radio/>} label={option.label} />                          
+                            <FormControlLabel onChange={(e)=>handleRatioFilterChange(e,section.id)} value={option.value} control={<Radio/>} label={option.label} />                          
                           </>
                         ))}
                         </RadioGroup>
+                        </FormControl>
                       </div>
                     </DisclosurePanel>
-                    </FormControl>
+                    
                   </Disclosure>
                   
                 ))}
               </form>
+              </div>
+              
 
               {/* Product grid */}
               <div className="lg:col-span-4">

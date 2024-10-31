@@ -16,18 +16,7 @@ function App() {
         </Routes>
       
       
-      {/* <Navigation/>
-      <div>
-        {/* <HomePage/> 
-        <Product/>
-      </div>
-      <div>
-        <Footer/>
-      </div> */}
-
-        <div>
-            <Footer/>
-        </div>
+      
     </div>
   );
 }

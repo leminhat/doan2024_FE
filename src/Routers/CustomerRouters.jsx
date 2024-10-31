@@ -18,7 +18,9 @@ const CustomerRouters = () => {
             <Route path="/product" element={<Product/>}></Route>
         </Routes>
 
-        
+        <div>
+          <Footer/>
+        </div>
     </div>
   )
 }

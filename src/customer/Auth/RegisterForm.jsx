@@ -12,14 +12,14 @@ const RegisterForm = () => {
   const jwt = localStorage.getItem("jwt")
   const {auth} = useSelector(store => store)
 
-  useEffect(()=>{
+  useEffect(()=>{                                                             
     if(jwt){
       dispatch(getUser(jwt))
     }
     
   },[jwt,auth.jwt])
 
- 
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
