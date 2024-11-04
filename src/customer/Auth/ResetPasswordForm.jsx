@@ -1,28 +1,39 @@
 import Grid from "@mui/material/Grid";
-import React, { useEffect } from "react";
+import React from "react";
 import { Button, TextField } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getUser, login } from "../../State/Auth/Action";
+import { getUser, register } from "../../State/Auth/Action";
 
-const LoginForm = () => {
+const ResetPasswordForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const jwt = localStorage.getItem("jwt");
+  const { auth } = useSelector((store) => store);
+
+  useEffect(() => {
+    if (jwt) {
+      dispatch(getUser(jwt));
+    }
+  }, [jwt, auth.jwt]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
-    
+
     const userData = {
-      email:data.get("email"),
-      password:data.get("password"),
-    }
-    dispatch(login(userData))
+      firstName: data.get("firstName"),
+      lastName: data.get("lastName"),
+      email: data.get("email"),
+      password: data.get("password"),
+    };
+    dispatch(register(userData));
     console.log("userData", userData);
-  }
-  
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -39,17 +50,6 @@ const LoginForm = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <TextField
-              required
-              id="password"
-              name="password"
-              label="Password"
-              fullWidth
-              autoComplete="password"
-            />
-          </Grid>
-
-          <Grid item xs={12}>
             <Button
               className="bg-[#9155FD] w-full"
               type="submit"
@@ -57,7 +57,7 @@ const LoginForm = () => {
               size="large"
               sx={{ padding: ".8rem 0", bgcolor: "#9155FD" }}
             >
-              Đăng nhập
+              Đăng ký
             </Button>
           </Grid>
         </Grid>
@@ -65,16 +65,14 @@ const LoginForm = () => {
 
       <div className="flex justify-center flex-col items-center">
         <div className="py-3 flex items-center">
-          <p>Bạn chưa có tài khoản?</p>
-          <Button onClick={()=>navigate("/register")} className='ml-5' size='small'>Đăng ký</Button>
-        </div>
-        <div className="flex items-center">
-          <p>Bạn quên mật khẩu?</p>
-          <Button onClick={()=>navigate("/reset_password")} className='ml-5' size='small'>Lấy lại mật khẩu</Button>
+          <p>Bạn đã có tài khoản?</p>
+          <Button onClick={() => navigate("/reset_password")} className="ml-5" size="small">
+            Đăng nhập
+          </Button>
         </div>
       </div>
     </div>
   );
 };
 
-export default LoginForm;
+export default ResetPasswordForm;
