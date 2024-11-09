@@ -435,7 +435,7 @@ export default function Navigation() {
                         <MenuItem>
                           Profile
                         </MenuItem>
-                        <MenuItem >
+                        <MenuItem onClick={()=>navigate("/account/order")}>
                           My Oders
                         </MenuItem>
                         <MenuItem onClick={handleLogout}>Logout</MenuItem>

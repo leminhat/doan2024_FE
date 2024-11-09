@@ -1,6 +1,6 @@
 "use client";
 import FilterListIcon from "@mui/icons-material/FilterList";
-import Productcard from "./Productcard";
+import ProductCard from "./ProductCard";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
 import { useState } from "react";
@@ -379,7 +379,7 @@ export default function Product() {
               <div className="lg:col-span-4">
                 <div className="flex flex-wrap justify-center bg-white py-5">
                   {mens_kurta.map((item) => (
-                    <Productcard product={item} />
+                    <ProductCard product={item} />
                   ))}
                 </div>
               </div>
