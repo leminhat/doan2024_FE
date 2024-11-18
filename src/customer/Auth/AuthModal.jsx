@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import ForgotPassForm from "./ForgotPassForm";
 import ResetPasswordForm from "./ResetPasswordForm";
 import HomePage from "../pages/HomePage/HomePage";
-import RecoverCode from "./RecoverCode";
+
 
 const style = {
   position: "absolute",
@@ -53,6 +53,8 @@ const AuthModal = ({ open, handleClose }) => {
           {/*) : (*/}
           {/*  <LoginForm/>*/}
           {/*)}*/}
+      
+      
         </Box>
       </Modal>
     </div>
