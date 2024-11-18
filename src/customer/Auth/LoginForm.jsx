@@ -73,6 +73,15 @@ const LoginForm = () => {
           <Button onClick={()=>navigate("/forgotpass")} className='ml-5' size='small'>Quên mật khẩu</Button>
         </div>
       </div>
+
+      <div className="flex justify-center flex-col items-center">
+      <div className="flex items-center">
+          <p>Bạn quên mật khẩu?</p>
+          <Button onClick={()=>navigate("/reset_password")} className='ml-5' size='small'>Lấy lại mật khẩu</Button>
+        </div>
+
+      </div>
+     
     </div>
   );
 };

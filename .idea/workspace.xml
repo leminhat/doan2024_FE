@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4e0a692f-bff0-4bfd-9f68-65fb29732e0e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Routers/CustomerRouters.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Routers/CustomerRouters.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customer/Auth/AuthModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/customer/Auth/AuthModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customer/Auth/LoginForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/customer/Auth/LoginForm.jsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2oFDebs6QJgNVryQmIatz7ATVfO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/download/doan2024_BE-main/be/ecommerce"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4e0a692f-bff0-4bfd-9f68-65fb29732e0e" name="Changes" comment="" />
+      <created>1730456526519</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1730456526519</updated>
+    </task>
+    <servers />
+  </component>
+</project>

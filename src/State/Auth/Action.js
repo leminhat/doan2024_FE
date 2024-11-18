@@ -7,7 +7,7 @@ const registerRequest=()=>({type:REGISTER_REQUEST});
 const registerSuccesss=(user)=>({type:REGISTER_SUCCESS,payload:user});
 const registerFailure=(error)=>({type:REGISTER_FAILURE,payload:error});
 
-export const register = userData => async (dispatch)=>{
+export const register = (userData)=> async (dispatch)=>{
     dispatch(registerRequest())
 
     try {
@@ -28,7 +28,7 @@ const loginRequest=()=>({type:LOGIN_REQUEST});
 const loginSuccesss=(user)=>({type:LOGIN_SUCCESS,payload:user});
 const loginFailure=(error)=>({type:LOGIN_FAILURE,payload:error});
 
-export const login = userData => async (dispatch)=>{
+export const login = (userData) => async (dispatch)=>{
     dispatch(loginRequest())
 
     try {
@@ -74,7 +74,7 @@ export const getUser = (jwt) => async (dispatch)=>{
     try {
         const response = await axios.get(`${API_BASE_URL}/api/users/profile`,{
             headers:{
-                "Authorization":`Bearer ${jwt}`
+                "Authorization":`Bearer ${token}`
             }
         })
         const user = response.data;

@@ -6,6 +6,9 @@ import { useLocation } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import ForgotPassForm from "./ForgotPassForm";
 import ResetPasswordForm from "./ResetPasswordForm";
+import ResetPasswordForm from "./ResetPasswordForm";
+import HomePage from "../pages/HomePage/HomePage";
+import RecoverCode from "./RecoverCode";
 
 const style = {
   position: "absolute",
@@ -22,7 +25,6 @@ const style = {
 
 const AuthModal = ({ open, handleClose }) => {
   const location = useLocation();
-
   return (
     <div>
       <Modal
@@ -36,8 +38,22 @@ const AuthModal = ({ open, handleClose }) => {
         {location.pathname === "/" && <LoginForm />}
         {location.pathname === "/register" && <RegisterForm />}
         {location.pathname === "/forgotpass" && <ForgotPassForm />}
-        
-       
+
+
+          {/* {location.pathname === "/login" ?
+            <LoginForm />:<RegisterForm/>} */}
+
+          {/*{location.pathname === "/login" ? (*/}
+          {/*  <LoginForm />*/}
+          {/*) : location.pathname === "/register" ? (*/}
+          {/*  <RegisterForm />*/}
+          {/*) : location.pathname === "/reset_password" ? (*/}
+          {/*  <ResetPasswordForm />*/}
+          {/*) : location.pathname === "/recover_code" ? (*/}
+          {/*  <RecoverCode />*/}
+          {/*) : (*/}
+          {/*  <LoginForm/>*/}
+          {/*)}*/}
         </Box>
       </Modal>
     </div>

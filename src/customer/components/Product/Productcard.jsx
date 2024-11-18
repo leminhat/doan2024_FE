@@ -1,9 +1,12 @@
+import { useNavigate } from "react-router-dom";
 import "./ProductCard.css";
 import React from "react";
 
-const Productcard = ({product}) => {
+const ProductCard = ({product}) => {
+
+  const navigate =useNavigate();
   return (
-    <div className="productCard w-[15rem] m-3 transition-all cursor-pointer">
+    <div onClick={()=>navigate(`/product/${product.id}`)} className="productCard w-[15rem] m-3 transition-all cursor-pointer">
       <div className="h-[20rem]">
         <img className="h-full w-full object-cover object-left-top"
             src={product.imageUrl}
@@ -28,4 +31,4 @@ const Productcard = ({product}) => {
   );
 };
 
-export default Productcard;
+export default ProductCard;

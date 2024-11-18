@@ -2,9 +2,13 @@ import Footer from "../customer/components/Footer/Footer";
 import HomePage from "../customer/pages/HomePage/HomePage";
 import Navigation from "../customer/components/Navigation/Navigation";
 import Product from "../customer/components/Product/Product";
+import ProductDetail from "../customer/components/ProductDetails/ProductDetail";
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import ResetPasswordForm from "../customer/Auth/ResetPasswordForm";
+import Checkout from "../customer/components/Checkout/Checkout";
+import Order from "../customer/components/Order/Order";
+import OrderDetails from "../customer/components/Order/OrderDetails";
 
 const CustomerRouters = () => {
   return (
@@ -19,13 +23,20 @@ const CustomerRouters = () => {
             <Route path="/" element={<HomePage/>}></Route>
             <Route path="/product" element={<Product/>}></Route>
             <Route path="/reset-password/:token" element={<ResetPasswordForm />} />
+            <Route path="/:lavelOne/:lavelTwo/:lavelThree" element={<Product />}></Route>
+            <Route path="/reset_password" element={<HomePage />}></Route>
+            <Route path="/recover_code" element={<HomePage/>}></Route>
+            <Route path="/product/:productId" element={<ProductDetail />}></Route>
+            <Route path="/cart" element={<Cart />}></Route>
+            <Route path="/checkout" element={<Checkout />}></Route>
+            <Route path="/account/order" element={<Order />}></Route>
+            <Route path="/account/order/orderId" element={<OrderDetails />}></Route>
         </Routes>
-
         <div>
           <Footer/>
         </div>
     </div>
-  )
-}
+  );
+};
 
-export default CustomerRouters
+export default CustomerRouters;
