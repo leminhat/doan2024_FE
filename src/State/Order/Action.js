@@ -10,7 +10,7 @@ export const createOrder=(reqData)=>async(dispatch)=>{
         if(data.id){
             reqData.navigate({search:`step=3&order_id=${data.id}`});
         }
-        console.log("created order -", data);
+        console.log("created order - ", data);
         dispatch({
             type:CREATE_ORDER_SUCCESS,
             payload:data,
