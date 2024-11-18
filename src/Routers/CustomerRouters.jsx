@@ -20,17 +20,18 @@ const CustomerRouters = () => {
             <Route path="/login" element={<HomePage/>}></Route>
             <Route path="/register" element={<HomePage/>}></Route>
             <Route path="/forgotpass" element={<HomePage/>}></Route>
-            <Route path="/" element={<HomePage/>}></Route>
+            
             <Route path="/product" element={<Product/>}></Route>
             <Route path="/reset-password/:token" element={<ResetPasswordForm />} />
             <Route path="/:lavelOne/:lavelTwo/:lavelThree" element={<Product />}></Route>
-            <Route path="/reset_password" element={<HomePage />}></Route>
-            <Route path="/recover_code" element={<HomePage/>}></Route>
+            {/* <Route path="/reset_password" element={<HomePage />}></Route> */}
+            {/* <Route path="/recover_code" element={<HomePage/>}></Route> */}
             <Route path="/product/:productId" element={<ProductDetail />}></Route>
-            <Route path="/cart" element={<Cart />}></Route>
+            {/* <Route path="/cart" element={<Cart/>}></Route> */}
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/account/order" element={<Order />}></Route>
             <Route path="/account/order/orderId" element={<OrderDetails />}></Route>
+            <Route path="/" element={<HomePage/>}></Route>
         </Routes>
         <div>
           <Footer/>
