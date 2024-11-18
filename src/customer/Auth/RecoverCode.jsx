@@ -1,17 +1,13 @@
-import Grid from "@mui/material/Grid";
 import React from "react";
-import { Button, TextField } from "@mui/material";
-
-import { useDispatch } from "react-redux";
-
-import {  register } from "../../State/Auth/Action";
+import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Button, TextField } from "@mui/material";
+import { register } from "../../State/Auth/Action";
 
-const ResetPasswordForm = () => {
+const RecoverCode = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -19,7 +15,7 @@ const ResetPasswordForm = () => {
     const data = new FormData(event.currentTarget);
 
     const userData = {
-      email: data.get("email"),
+      email: data.get("code"),
     };
     dispatch(register(userData));
     console.log("userData", userData);
@@ -29,14 +25,14 @@ const ResetPasswordForm = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={3}>
-          <Grid item xs={12} >
-            <TextField
+          <Grid item xs={12}>
+          <TextField
               required
-              id="email"
-              name="email"
-              label="Email"
+              id="code"
+              name="code"
+              label="Mã xác nhận"
               fullWidth
-              autoComplete="email"
+              autoComplete="given-name"
             />
           </Grid>
 
@@ -47,9 +43,9 @@ const ResetPasswordForm = () => {
               variant="contained"
               size="large"
               sx={{ padding: ".8rem 0", bgcolor: "#9155FD" }}
-              onClick={() => navigate("/recover_code")}
+              onClick={() => navigate("/login")}
             >
-              Lấy lại mật khẩu
+              Nhập mã
             </Button>
           </Grid>
         </Grid>
@@ -58,4 +54,4 @@ const ResetPasswordForm = () => {
   );
 };
 
-export default ResetPasswordForm;
+export default RecoverCode;

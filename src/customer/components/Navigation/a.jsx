@@ -43,6 +43,7 @@ export default function Navigation() {
   };
   const handleClose = () => {
     setOpenAuthModal(false);
+    navigate("/")
   };
 
   const {auth} = useSelector(store => store)
@@ -51,6 +52,9 @@ export default function Navigation() {
     close();
   };
 
+  console.log(auth)
+
+  console.log(auth?.user?.firstname, auth?.user?.lastname)
 
   useEffect(()=>{
     if(jwt){
@@ -73,6 +77,7 @@ export default function Navigation() {
       handleCloseUserMenu()
     }
   
+
 
   return (
     <div className="bg-white pb-10">
@@ -296,7 +301,7 @@ export default function Navigation() {
                             enterFrom="opacity-0"
                             enterTo="opacity-100"
                             leave="transition ease-in duration-150"
-                            leaveFrom="opacity-100"
+leaveFrom="opacity-100"
                             leaveTo="opacity-0"
                           >
                             <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
@@ -343,7 +348,7 @@ export default function Navigation() {
                                     </div>
                                     <div className="row-start-1 grid grid-cols-3 gap-x-8 gap-y-10 text-sm">
                                       {category.sections.map((section) => (
-                                        <div key={section.name}>
+<div key={section.name}>
                                           <p
                                             id={`${section.name}-heading`}
                                             className="font-medium text-gray-900"
@@ -403,8 +408,8 @@ export default function Navigation() {
               </Popover.Group>
 
               <div className="ml-auto flex items-center">
-                <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  {auth.user?.firstName ? (
+<div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
+                  {auth.user?.firstname ? (
                     <div>
                       <Avatar
                         className="text-white"
@@ -419,7 +424,7 @@ export default function Navigation() {
                           cursor: "pointer",
                         }}
                       >
-                        {auth.user?.firstName[0].toUpperCase()}
+                        {(auth.user?.firstname)[0].toUpperCase()}
                       </Avatar>
                       
                       <Menu
@@ -434,7 +439,7 @@ export default function Navigation() {
                         <MenuItem>
                           Profile
                         </MenuItem>
-                        <MenuItem onClick={()=>navigate("/account/order")}>
+                        <MenuItem >
                           My Oders
                         </MenuItem>
                         <MenuItem onClick={handleLogout}>Logout</MenuItem>
@@ -445,7 +450,7 @@ export default function Navigation() {
                       onClick={handleOpen}
                       className="text-sm font-medium text-gray-700 hover:text-gray-800"
                     >
-                      Đăng nhập
+                      Đăng ký
                     </Button>
                   )}
                 </div>
@@ -477,7 +482,7 @@ export default function Navigation() {
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
                   </Button>
-                </div>
+</div>
               </div>
             </div>
           </div>

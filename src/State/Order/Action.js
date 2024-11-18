@@ -5,10 +5,10 @@ export const createOrder=(reqData)=>async(dispatch)=>{
     dispatch({tyoe:CREATE_ORDER_REQUEST});
 
     try{
-        const{data}= await api.post(`/api/order/`, reqData.aadress,);
+        const{data}= await api.post(`/api/order/`, reqData.address,);
 
         if(data.id){
-            reqData.navigate({search:` step=3&order_id=${data.id}`});
+            reqData.navigate({search:`step=3&order_id=${data.id}`});
         }
         console.log("created order -", data);
         dispatch({
