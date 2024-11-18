@@ -32,7 +32,7 @@ const CustomerRouters = () => {
             <Route path="/cart" element={<Cart />}></Route>
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/account/order" element={<Order />}></Route>
-            <Route path="/account/order/orderId" element={<OrderDetails />}></Route>
+            <Route path="/account/order/:orderId" element={<OrderDetails />}></Route>
         </Routes>
         <div>
           <Footer/>

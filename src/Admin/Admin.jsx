@@ -19,11 +19,12 @@ import MailIcon from "@mui/icons-material/Mail";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { Dashboard } from "@mui/icons-material";
-import CreatProductForm from "./components/CreatProductForm";
+import CreatProductForm from "./components/CreateProductForm";
 import ProductTable from "./components/ProductTable";
 import OrderTable from "./components/OrderTable";
 import CustomersTable from "./components/CustomersTable";
 import AdminDashboard from "./components/Dashboard";
+import CreateProductForm from "./components/CreateProductForm";
 
 const menu = [
   { name: "Dashborad", path: "/admin", icon: <DashboardIcon /> },
@@ -85,25 +86,25 @@ const Admin = () => {
   );
 
   return (
-    <div>
-      <div className="flex h-[100vh]">
+    
+      <div className='relative flex h-[100vh] '>
         <CssBaseline />
 
-        <div className="w-[15%] border border-gray-300 h-full">
+        <div className='w-[15%] border border-gray-300 h-full fixed top-0'>
           {drawer}
         </div>
 
-        <div className="w-[85%]">
+        <div className='w-[85%] h-full ml-[15%]'>
           <Routes>
             <Route path="/" element={<AdminDashboard />}></Route>
-            <Route path="/product/create" element={<CreatProductForm/>}></Route>
+            <Route path="/product/create" element={<CreateProductForm/>}></Route>
             <Route path="/products" element={<ProductTable/>}></Route>
             <Route path="/orders" element={<OrderTable/>}></Route>
             <Route path="/customers" element={<CustomersTable/>}></Route>
           </Routes>
         </div>
       </div>
-    </div>
+    
   );
 };
 
