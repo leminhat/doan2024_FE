@@ -97,7 +97,7 @@ export default function ProductDetails() {
   const {products} =useSelector(store=>store)
 
  const handlerAddToCart=()=>{
-  const data ={productId:params.productId,size:selectedSize.name}
+  const data ={productId:params.productId,size:selectedSize}
   dispatch(addItemToCart(data))
   navigate("/cart")
  }
@@ -155,8 +155,8 @@ export default function ProductDetails() {
           <div className="flex flex-col items-center">
             <div className="overflow-hidden rounded-lg max-w-[30rem] max-h[35rem]">
               <img
-                alt={products.product?.imageUrl}
-                src={product.images[0].src}
+                alt={products?.product?.imageUrl}
+                src=""
                 className="h-full w-full object-cover object-center"
               />
             </div>

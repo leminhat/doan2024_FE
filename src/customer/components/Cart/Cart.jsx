@@ -1,20 +1,28 @@
 import { Button, Divider } from "@mui/material";
 import CartItem from "./CartItem";
-import React from "react";
+import React, { useEffect } from "react";
 import { handler } from "@tailwindcss/aspect-ratio";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getCart } from "../../../State/Cart/Action";
 
 const Cart = () => {
 
   const navigate = useNavigate();
+  const {cart}= useSelector(store=>store);
+  const dispatch = useDispatch();
   const handlerCheckout =()=>{
     navigate("/checkout?step=2")
   }
+
+  useEffect(()=>{
+    dispatch(getCart())
+  })
   return (
     <div>
       <div className="lg:grid grid-cols-3 lg:px-16 relative">
         <div className="col-span-2">
-          {[1,1,1,1].map((item)=><CartItem />)}
+          {cart.cart?.cartItems.map((item)=><CartItem item={item}/>)}
         </div>
         <div className="px-5 sticky top-0 h-[100vh] mt-5 lg:mt-0 ">
           <div className="border">
@@ -24,12 +32,12 @@ const Cart = () => {
             <div className="space-y-3 font-semibold mb-10">
               <div className="flex justify-between pt-3 text-black">
                 <span>Price</span>
-                <span>500$</span>
+                <span>{cart.cart?.totalPrice}$</span>
               </div>
 
               <div className="flex justify-between pt-3">
                 <span>Discount</span>
-                <span className=" text-green-600">270$</span>
+                <span className=" text-green-600">{cart.cart?.discounte}$</span>
               </div>
 
               <div className="flex justify-between pt-3 text-black">
@@ -39,7 +47,7 @@ const Cart = () => {
 
               <div className="flex justify-between pt-3 text-black font-bold">
                 <span>Total Amount</span>
-                <span className=" text-green-600">230$</span>
+                <span className=" text-green-600">{cart.cart?.totalDiscountedPrice}</span>
               </div>
             </div>
 
