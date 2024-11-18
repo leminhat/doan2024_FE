@@ -6,7 +6,6 @@ import { useLocation } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import ForgotPassForm from "./ForgotPassForm";
 import ResetPasswordForm from "./ResetPasswordForm";
-import ResetPasswordForm from "./ResetPasswordForm";
 import HomePage from "../pages/HomePage/HomePage";
 import RecoverCode from "./RecoverCode";
 
