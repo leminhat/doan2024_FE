@@ -17,7 +17,8 @@ const Cart = () => {
 
   useEffect(()=>{
     dispatch(getCart())
-  })
+  },[cart.updateCatItem,cart.deleteCartItem])
+
   return (
     <div>
       <div className="lg:grid grid-cols-3 lg:px-16 relative">
