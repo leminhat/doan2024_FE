@@ -27,7 +27,7 @@ const CartItem = ({item}) => {
         <div className="ml-5 space-y-1">
 
           <p className="font-semibold">{item.product.title}</p>
-          <p className="opacity-70">Size: {item.size},</p>
+          <p className="opacity-70">Size: {item.size},{item.color}</p>
           <p className="opacity-70 mt-2">Seller: {item.product.brand}</p>
 
           <div className="flex space-x-5 items-center text-lg lg:text-xl text-gray-900 pt-3">
