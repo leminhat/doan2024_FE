@@ -27,8 +27,8 @@ const RegisterForm = () => {
     const data = new FormData(event.currentTarget);
     
     const userData = {
-      firstName:data.get("firstName"),
-      lastName: data.get("lastName"),
+      firstname:data.get("firstname"),
+      lastname: data.get("lastname"),
       email:data.get("email"),
       password:data.get("password"),
     }
@@ -43,8 +43,8 @@ const RegisterForm = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               required
-              id="firstName"
-              name="firstName"
+              id="firstname"
+              name="firstname"
               label="First Name"
               fullWidth
               autoComplete="given-name"
@@ -54,8 +54,8 @@ const RegisterForm = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               required
-              id="lastName"
-              name="lastName"
+              id="lastname"
+              name="lastname"
               label="Last Name"
               fullWidth
               autoComplete="given-name"

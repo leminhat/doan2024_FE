@@ -4,6 +4,8 @@ import RegisterForm from "./RegisterForm";
 import { Box, Modal, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
+import ForgotPassForm from "./ForgotPassForm";
+import ResetPasswordForm from "./ResetPasswordForm";
 
 const style = {
   position: "absolute",
@@ -20,6 +22,7 @@ const style = {
 
 const AuthModal = ({ open, handleClose }) => {
   const location = useLocation();
+
   return (
     <div>
       <Modal
@@ -29,7 +32,12 @@ const AuthModal = ({ open, handleClose }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {location.pathname==="/login" ? <LoginForm/> : <RegisterForm />}      
+        {location.pathname === "/login" && <LoginForm />}
+        {location.pathname === "/" && <LoginForm />}
+        {location.pathname === "/register" && <RegisterForm />}
+        {location.pathname === "/forgotpass" && <ForgotPassForm />}
+        
+       
         </Box>
       </Modal>
     </div>

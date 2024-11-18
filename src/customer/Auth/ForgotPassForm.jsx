@@ -3,9 +3,9 @@ import React, { useEffect } from "react";
 import { Button, TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getUser, login } from "../../State/Auth/Action";
+import { forgotPass, getUser, login } from "../../State/Auth/Action";
 
-const LoginForm = () => {
+const ForgotPassForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -17,9 +17,8 @@ const LoginForm = () => {
     
     const userData = {
       email:data.get("email"),
-      password:data.get("password"),
     }
-    dispatch(login(userData))
+    dispatch(forgotPass(userData))
     console.log("userData", userData);
   }
   
@@ -38,16 +37,7 @@ const LoginForm = () => {
             />
           </Grid>
 
-          <Grid item xs={12}>
-            <TextField
-              required
-              id="password"
-              name="password"
-              label="Password"
-              fullWidth
-              autoComplete="password"
-            />
-          </Grid>
+          
 
           <Grid item xs={12}>
             <Button
@@ -57,24 +47,15 @@ const LoginForm = () => {
               size="large"
               sx={{ padding: ".8rem 0", bgcolor: "#9155FD" }}
             >
-              Đăng nhập
+              Submit
             </Button>
           </Grid>
         </Grid>
       </form>
 
-      <div className="flex justify-center flex-col items-center">
-        <div className="py-3 flex items-center">
-          <p>Bạn chưa có tài khoản?</p>
-          <Button onClick={()=>navigate("/register")} className='ml-5' size='small'>Đăng ký</Button>
-        </div>
-        <div className="py-3 flex items-center">
-          <p>Bạn quên mật khẩu?</p>
-          <Button onClick={()=>navigate("/forgotpass")} className='ml-5' size='small'>Quên mật khẩu</Button>
-        </div>
-      </div>
+      
     </div>
   );
 };
 
-export default LoginForm;
+export default ForgotPassForm;

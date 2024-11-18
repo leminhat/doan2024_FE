@@ -6,6 +6,7 @@ import Navigation from "./customer/components/Navigation/Navigation";
 import Product from "./customer/components/Product/Product";
 import logo from "./logo.svg";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ResetPasswordForm from "./customer/Auth/ResetPasswordForm";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       
         <Routes>
           <Route path="/*" element={<CustomerRouters/>}></Route>
+         
         </Routes>
       
       

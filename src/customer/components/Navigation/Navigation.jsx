@@ -52,6 +52,9 @@ export default function Navigation() {
     close();
   };
 
+  console.log(auth)
+
+  console.log(auth?.user?.firstname, auth?.user?.lastname)
 
   useEffect(()=>{
     if(jwt){
@@ -64,7 +67,7 @@ export default function Navigation() {
     if(auth.user){
       handleClose()
     }
-    if(location.pathname==="/login" || location.pathname==="/register"){
+    if(location.pathname==="/login" || location.pathname==="/register" || location.pathname==="/forgotpass"){
       navigate(-1)
     }
   },[auth.user])
@@ -74,6 +77,7 @@ export default function Navigation() {
       handleCloseUserMenu()
     }
   
+
 
   return (
     <div className="bg-white pb-10">
@@ -405,7 +409,7 @@ export default function Navigation() {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  {auth.user?.firstName ? (
+                  {auth.user?.firstname ? (
                     <div>
                       <Avatar
                         className="text-white"
@@ -420,7 +424,7 @@ export default function Navigation() {
                           cursor: "pointer",
                         }}
                       >
-                        {auth.user?.firstName[0].topUpCase()}
+                        {(auth.user?.firstname)[0].toUpperCase()}
                       </Avatar>
                       
                       <Menu
@@ -446,7 +450,7 @@ export default function Navigation() {
                       onClick={handleOpen}
                       className="text-sm font-medium text-gray-700 hover:text-gray-800"
                     >
-                      Đăng ký
+                      Sign In
                     </Button>
                   )}
                 </div>
