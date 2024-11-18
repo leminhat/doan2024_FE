@@ -9,6 +9,7 @@ import { handler } from "@tailwindcss/aspect-ratio";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { findProductsById } from "../../../State/Product/Action";
+import { addItemToCart } from "../../../State/Cart/Action";
 
 /*
   This example requires some changes to your config:
@@ -96,6 +97,8 @@ export default function ProductDetails() {
   const {products} =useSelector(store=>store)
 
  const handlerAddToCart=()=>{
+  const data ={productId:params.productId,size:selectedSize.name}
+  dispatch(addItemToCart(data))
   navigate("/cart")
  }
 
@@ -204,6 +207,7 @@ export default function ProductDetails() {
               </div>
 
               <form className="mt-10 space-y-5">
+
                 {/* Sizes */}
                 <div className="mt-10">
                   <div className="flex items-center justify-between">
