@@ -24,7 +24,7 @@ import {
   TableRow,
 } from "@mui/material";
 
-const OrderTable = () => {
+const OrderTableView = () => {
   const [anchorEl, setAnchorEl] = React.useState([]);
   const open = Boolean(anchorEl);
   const handleClick = (event, index) => {
@@ -44,7 +44,12 @@ const OrderTable = () => {
 
   useEffect(() => {
     dispatch(getOrders());
-  }, [adminOrder.confirmed, adminOrder.shipped, adminOrder.delivered, adminOrder.deletedOrder]);
+  }, [
+    adminOrder.confirmed,
+    adminOrder.shipped,
+    adminOrder.delivered,
+    adminOrder.deletedOrder,
+  ]);
 
   const handleShipOrder = (orderId) => {
     dispatch(shipOrder(orderId));
@@ -79,8 +84,6 @@ const OrderTable = () => {
                 <TableCell align="left">Id</TableCell>
                 <TableCell align="left">Price</TableCell>
                 <TableCell align="left">Status</TableCell>
-                <TableCell align="left">Update</TableCell>
-                <TableCell align="left">Delete</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -108,17 +111,17 @@ const OrderTable = () => {
                   <TableCell align="left">
                     <span
                       className={`text-white px-5 py-2 rounded-full
-                    ${
-                      item.orderStatus === "CONFIRMED"
-                        ? "bg-[#2aac2a]"
-                        : item.orderStatus === "SHIPPED"
-                        ? "bg-[#2222a8]"
-                        : item.orderStatus === "PLACED"
-                        ? "bg-[#1d6e88]"
-                        : item.orderStatus === "PENDING"
-                        ? "bg-[gray]"
-                        : "bg-[#148a3e]"
-                    }`}
+                          ${
+                            item.orderStatus === "CONFIRMED"
+                              ? "bg-[#2aac2a]"
+                              : item.orderStatus === "SHIPPED"
+                              ? "bg-[#2222a8]"
+                              : item.orderStatus === "PLACED"
+                              ? "bg-[#1d6e88]"
+                              : item.orderStatus === "PENDING"
+                              ? "bg-[gray]"
+                              : "bg-[#148a3e]"
+                          }`}
                     >
                       {item.orderStatus}
                     </span>
@@ -127,7 +130,7 @@ const OrderTable = () => {
                     <Button
                       id="basic-button"
                       aria-haspopup="true"
-                      onClick={(event)=>handleClick(event,index)}
+                      onClick={(event) => handleClick(event, index)}
                       aria-controls={`basic-menu-{item.id}`}
                       aria-expanded={Boolean(anchorEl[index])}
                     >
@@ -137,7 +140,7 @@ const OrderTable = () => {
                       id={`basic-menu-${item.id}`}
                       anchorEl={anchorEl[index]}
                       open={Boolean(anchorEl[index])}
-                      onClose={()=>handleClose(index)}
+                      onClose={() => handleClose(index)}
                       MenuListProps={{
                         "aria-labelledby": "basic-button",
                       }}
@@ -171,4 +174,4 @@ const OrderTable = () => {
   );
 };
 
-export default OrderTable;
+export default OrderTableView;
