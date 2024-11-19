@@ -162,7 +162,7 @@ export default function ProductDetails() {
             </div>
             <div className="flex flex-wrap space-x-5 justify-center">
             {/* product.images */}
-              {mens_kurta.map((item) => (
+              {products.product?.map((item) => (
                 <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4">
                   <img
                     alt={item.alt}
@@ -222,7 +222,7 @@ export default function ProductDetails() {
                       className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4"
                     >
                       {/* product.sizes */}
-                      {mens_kurta.map((size) => (
+                      {products.product?.map((size) => (
                         <Radio
                           key={size.name}
                           value={size}
@@ -436,7 +436,7 @@ export default function ProductDetails() {
           <h1 className="py-5 text-xl font-bold">Similer Products</h1>
 
           <div className="flex flex-wrap space-y-5">
-            {mens_kurta.map((item) => (
+            {products.product?.map((item) => (
               <HomeSelectionCard product={item} />
             ))}
           </div>
