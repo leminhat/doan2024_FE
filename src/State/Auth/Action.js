@@ -37,8 +37,8 @@ export const login = (userData) => async (dispatch)=>{
         if(user.jwt){
             localStorage.setItem("jwt", user.jwt)
         }
-        console.log("user",user)
-        alert("dang nhap thanh cong")
+        // console.log("user",user)
+        // alert("dang nhap thanh cong")
         dispatch(loginSuccesss(user.jwt))
 
     } catch (error) {

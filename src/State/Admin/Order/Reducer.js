@@ -48,7 +48,7 @@ const adminOrderReducer = (state = initialState, action) => {
     case PLACED_ORDER_SUCCESS:
       return { ...state, placed: action.payload, loading: false };
     case DELIVERED_ORDER_SUCCESS:
-      return { ...state, delicered: action.payload, loading: false };
+      return { ...state, delivered: action.payload, loading: false };
     case CANCELED_ORDER_SUCCESS:
       return { ...state, canceled: action.payload, loading: false };
 

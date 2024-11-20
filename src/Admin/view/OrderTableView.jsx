@@ -87,7 +87,7 @@ const OrderTableView = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {adminOrder.orders?.map((item, index) => (
+              {adminOrder.orders && Array.isArray(adminOrder.orders) && adminOrder.orders?.map((item, index) => (
                 <TableRow
                   key={item.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

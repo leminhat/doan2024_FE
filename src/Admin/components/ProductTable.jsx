@@ -27,14 +27,14 @@ const ProductTable = () => {
 
   useEffect(() => {
     const data = {
-      category: "ahihi",
-      color: [],
+      category: "",
+      colors: [],
       sizes: [],
       minPrice: 0,
       maxPrice: 100000000,
       minDiscount: 0,
       sort: "price_low",
-      pagenumber: 1,
+      pageNumber: 0,
       pageSize: 5,
       stock: "",
     };
@@ -51,6 +51,7 @@ const ProductTable = () => {
               <TableRow>
                 <TableCell>Image</TableCell>
                 <TableCell align="left">Title</TableCell>
+                <TableCell align="left">ID</TableCell>
                 <TableCell align="left">Category</TableCell>
                 <TableCell align="left">Price</TableCell>
                 <TableCell align="left">Quantity</TableCell>

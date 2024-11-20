@@ -21,7 +21,7 @@ const Achivement = () => {
         <Card className='space-y-5' sx={{position:'relative', bgcolor:'#242B2E', color:'white'}}>
             <CardContent>
                 <Typography variant='h6' sx={{letterSpacing:".25px"}}>
-                    Shop cua Hiu
+                    Ecommerce System
                 </Typography>
 
                 <Typography variant='body2'>Congratulations</Typography>
