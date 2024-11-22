@@ -21,7 +21,7 @@ export const getOrders = () => {
   return async (dispatch) => {
     dispatch({ type: GET_ORDER_REQUEST });
     try {
-      const response = await api.get(`/api/admin/order`);
+      const response = await api.get(`/api/admin/orders/`);
       dispatch({ type: GET_ORDER_SUCCESS, payload: response.data });
     } catch (error) {
       dispatch({ type: GET_ORDER_FAILURE, payload: error.massage });

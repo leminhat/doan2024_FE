@@ -26,12 +26,12 @@ const CreateProductForm = () => {
     color: "",
     discountedPrice: "",
     price: "",
-    discountPersent: "",
+    discountPercent: "",
     size: initialSizes,
     quantity: "",
-    topLavelCategory: "",
-    secondLavelCategory: "",
-    thirdLavelCategory: "",
+    topLevelCategory: "",
+    secondLevelCategory: "",
+    thirdLevelCategory: "",
     description: "",
   });
 
@@ -154,7 +154,7 @@ const CreateProductForm = () => {
             <TextField
               fullWidth
               label="Discount Percentage"
-              name="discountpercent"
+              name="discountPercent"
               value={productData.discountPercent}
               onChange={handleChange}
               type="number"
@@ -165,8 +165,8 @@ const CreateProductForm = () => {
             <FormControl fullWidth>
               <InputLabel>Top Level Category</InputLabel>
               <Select
-                name="topLavelCategory"
-                value={productData.topLavelCategory}
+                name="topLevelCategory"
+                value={productData.topLevelCategory}
                 onChange={handleChange}
                 label="Top Level Category"
               >
@@ -181,8 +181,8 @@ const CreateProductForm = () => {
             <FormControl fullWidth>
               <InputLabel>Second Level Category</InputLabel>
               <Select
-                name="secondLavelCategory"
-                value={productData.secondLavelCategory}
+                name="secondLevelCategory"
+                value={productData.secondLevelCategory}
                 onChange={handleChange}
                 label="Second Level Category"
               >
@@ -197,8 +197,8 @@ const CreateProductForm = () => {
             <FormControl fullWidth>
               <InputLabel>Third Level Category</InputLabel>
               <Select
-                name="thirdLavelCategory"
-                value={productData.thirdLavelCategory}
+                name="thirdLevelCategory"
+                value={productData.thirdLevelCategory}
                 onChange={handleChange}
                 label="Third Level Category"
               >

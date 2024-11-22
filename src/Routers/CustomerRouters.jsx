@@ -25,7 +25,7 @@ const CustomerRouters = () => {
             <Route path="/" element={<HomePage/>}></Route>
             <Route path="/product" element={<Product/>}></Route>
             <Route path="/reset-password/:token" element={<ResetPasswordForm />} />
-            <Route path="/:lavelOne/:lavelTwo/:lavelThree" element={<Product />}></Route>
+            <Route path="/:LevelOne/:LevelTwo/:LevelThree" element={<Product />}></Route>
             <Route path="/reset_password" element={<HomePage />}></Route>
             <Route path="/recover_code" element={<HomePage/>}></Route>
             <Route path="/product/:productId" element={<ProductDetail />}></Route>
