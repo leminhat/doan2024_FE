@@ -42,9 +42,9 @@ const ProductTableView = () => {
   }, [products.deletedProduct]);
 
   return (
-    <div className="p-5">
+    <div className="p-3">
       <Card className="mt-2 bg-[#1b1b1b]">
-        <CardHeader title="All Products" />
+        <CardHeader title="Recent Products" />
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>

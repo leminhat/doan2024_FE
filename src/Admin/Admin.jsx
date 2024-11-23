@@ -2,34 +2,31 @@ import InboxIcon from "@mui/icons-material/Inbox";
 import {
   Box,
   CssBaseline,
-  Drawer,
+
   List,
   ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  patch,
-  Toolbar,
+
   useMediaQuery,
   useTheme,
 } from "@mui/material";
 import React, { useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import MailIcon from "@mui/icons-material/Mail";
+
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { Dashboard } from "@mui/icons-material";
-import CreatProductForm from "./components/CreateProductForm";
+
 import ProductTable from "./components/ProductTable";
 import OrderTable from "./components/OrderTable";
-import CustomersTable from "./components/CustomersTable";
+
 import AdminDashboard from "./components/Dashboard";
 import CreateProductForm from "./components/CreateProductForm";
 
 const menu = [
   { name: "Dashborad", path: "/admin", icon: <DashboardIcon /> },
   { name: "Products", path: "/admin/products", icon: <DashboardIcon /> },
-  { name: "Customers", path: "/admin/customers", icon: <DashboardIcon /> },
   { name: "Orders", path: "/admin/orders", icon: <DashboardIcon /> },
   {
     name: "AddProduct",
@@ -100,7 +97,6 @@ const Admin = () => {
             <Route path="/product/create" element={<CreateProductForm/>}></Route>
             <Route path="/products" element={<ProductTable/>}></Route>
             <Route path="/orders" element={<OrderTable/>}></Route>
-            <Route path="/customers" element={<CustomersTable/>}></Route>
           </Routes>
         </div>
       </div>

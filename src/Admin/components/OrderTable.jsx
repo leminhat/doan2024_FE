@@ -67,7 +67,7 @@ const OrderTable = () => {
   };
 
   return (
-    <div className="p-10">
+    <div className="p-5">
       <Card className="mt-2 bg-[#1b1b1b]">
         <CardHeader title="All Orders" />
         <TableContainer component={Paper}>
