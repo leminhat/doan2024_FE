@@ -107,7 +107,7 @@ export default function Product() {
       priceValue === null ? [0, 0] : priceValue.split("-").map(Number);
 
     const data = {
-      category: param.lavelThree,
+      category: param.LevelThree,
       colors: colorValue || [],
       sizes: sizeValue | [],
       minPrice,
@@ -120,7 +120,7 @@ export default function Product() {
     };
     dispatch(findProducts(data));
   }, [
-    param.lavelThree,
+    param.LevelThree,
     colorValue,
     sizeValue,
     priceValue,

@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e0a692f-bff0-4bfd-9f68-65fb29732e0e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Admin/components/CreateProductForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin/components/CreateProductForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data/mens_kurta.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/mens_kurta.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Routers/CustomerRouters.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Routers/CustomerRouters.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/State/Auth/Action.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/State/Auth/Action.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/customer/Auth/AuthModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/customer/Auth/AuthModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/customer/Auth/LoginForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/customer/Auth/LoginForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/customer/components/Product/Product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/customer/components/Product/Product.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,21 +26,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JavaScript Debug.Unnamed.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/doan2024_FE/doan2024_FE",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.Unnamed.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/doan2024_FE/doan2024_FE&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Unnamed" type="JavascriptDebugType" nameIsGenerated="true" uri="http://localhost:3000">
       <method v="2" />
@@ -51,8 +49,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
       </set>
     </attachedChunks>
   </component>
@@ -66,6 +64,7 @@
       <updated>1730456526519</updated>
       <workItem from="1731901789928" duration="1530000" />
       <workItem from="1731917220088" duration="2121000" />
+      <workItem from="1732263247859" duration="71000" />
     </task>
     <servers />
   </component>
@@ -89,13 +88,11 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/customer/components/Product/Product.jsx</url>
           <line>45</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/customer/components/Product/Product.jsx</url>
           <line>267</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
