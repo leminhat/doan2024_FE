@@ -7,32 +7,26 @@ import { createOrder } from "../../../State/Order/Action";
 import { useNavigate } from "react-router-dom";
 const DeliveryAddressForm = () => {
   const dispatch = useDispatch();
-  const navigate =useNavigate();
+  const navigate = useNavigate();
 
-
-  const handleSubmit=(event)=>{
+  const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    const address ={
-      firstName:data.get("firstName"),
-      lastName:data.get("lastName"),
-      streetAddress:data.get("address"),
-      city:data.get("city"),
-      zipCode:data.get("zip"),
-      provice:data.get("provice"),
-      mobile:data.get("phoneNumber"),
-    }
+    const address = {
+      firstName: data.get("firstName"),
+      lastName: data.get("lastName"),
+      streetAddress: data.get("address"),
+      city: data.get("city"),
+      zipCode: data.get("zip"),
+      provice: data.get("provice"),
+      mobile: data.get("phoneNumber"),
+    };
 
-    const orderData={address,navigate}
-    dispatch(createOrder(orderData))
-    console.log("address",address)
-
-    
-
-  }
-
-  
+    const orderData = { address, navigate };
+    dispatch(createOrder(orderData));
+    console.log("address", address);
+  };
 
   return (
     <div>
@@ -61,7 +55,7 @@ const DeliveryAddressForm = () => {
                     autoComplete="given-name"
                   />
                 </Grid>
-                
+
                 <Grid item xs={12} sm={6}>
                   <TextField
                     required
@@ -71,11 +65,7 @@ const DeliveryAddressForm = () => {
                     fullWidth
                     autoComplete="given-name"
                   />
-
-                 
                 </Grid>
-
-                
 
                 <Grid item xs={12}>
                   <TextField
@@ -144,8 +134,6 @@ const DeliveryAddressForm = () => {
                     Deliver here
                   </Button>
                 </Grid>
-
-
               </Grid>
             </form>
           </Box>

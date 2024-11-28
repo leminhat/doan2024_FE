@@ -34,7 +34,6 @@ const Order = () => {
                   >
                     {option.lable}
                   </label>
-
                 </div>
               ))}
             </div>
@@ -42,13 +41,12 @@ const Order = () => {
         </Grid>
 
         <Grid item xs={9}>
-
-<div className="space-y-5">
-{[1,1,1,1,1].map((item)=><OrderCard />)}
-    
-    </div>          
+          <div className="space-y-5">
+            {[1, 1, 1, 1, 1].map((item) => (
+              <OrderCard />
+            ))}
+          </div>
         </Grid>
-
       </Grid>
     </div>
   );
