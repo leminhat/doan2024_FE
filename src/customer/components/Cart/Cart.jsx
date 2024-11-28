@@ -11,7 +11,7 @@ const Cart = () => {
   const { cart } = useSelector((store) => store);
   const dispatch = useDispatch();
   const handlerCheckout = () => {
-    navigate("/checkout?step=1");
+    navigate("/checkout?step=2");
   };
 
   useEffect(() => {
