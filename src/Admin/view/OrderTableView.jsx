@@ -107,7 +107,7 @@ const OrderTableView = () => {
                   </TableCell>
 
                   <TableCell align="left">{item.id}</TableCell>
-                  <TableCell align="left">{item.total.price}</TableCell>
+                  {/* <TableCell align="left">{item.total.price}</TableCell> */}
                   <TableCell align="left">
                     <span
                       className={`text-white px-5 py-2 rounded-full

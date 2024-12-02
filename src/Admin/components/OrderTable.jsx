@@ -41,6 +41,7 @@ const OrderTable = () => {
   const dispatch = useDispatch();
 
   const { adminOrder } = useSelector((store) => store);
+  console.log(adminOrder)
 
   useEffect(() => {
     dispatch(getOrders());
@@ -86,7 +87,7 @@ const OrderTable = () => {
             <TableBody>
               {adminOrder.orders && Array.isArray(adminOrder.orders) && adminOrder.orders?.map((item, index) => (
                 <TableRow
-                  key={item.name}
+                  key={item.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell align="">
@@ -104,7 +105,7 @@ const OrderTable = () => {
                   </TableCell>
 
                   <TableCell align="left">{item.id}</TableCell>
-                  <TableCell align="left">{item.total.price}</TableCell>
+                  <TableCell align="left">{item.totalPrice}</TableCell>
                   <TableCell align="left">
                     <span
                       className={`text-white px-5 py-2 rounded-full

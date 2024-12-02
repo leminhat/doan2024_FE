@@ -57,7 +57,7 @@ export default function Checkout() {
             <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
               <Button
                 color="inherit"
-                disabled={activeStep === 0}
+                disabled = {step === 0}
                 onClick={handleBack}
                 sx={{ mr: 1 }}
               >
@@ -69,7 +69,7 @@ export default function Checkout() {
             </Box>
 
             <div className="mt-10">
-                {step == 1 ? <DeliveryAddressForm/> : <OrderSumary/>}
+                {step == 2 ? <DeliveryAddressForm/> : <OrderSumary/>}
             </div>
 
           </React.Fragment>

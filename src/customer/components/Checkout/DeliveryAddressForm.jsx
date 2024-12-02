@@ -1,32 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Button, Grid, TextField } from "@mui/material";
-import AdressCard from "../AdressCard/AdressCard";
-import { useDispatch } from "react-redux";
+import AddressCard from "../AddressCard/AddressCard";
+import { useDispatch, useSelector } from "react-redux";
 import { create } from "@mui/material/styles/createTransitions";
 import { createOrder } from "../../../State/Order/Action";
 import { useNavigate } from "react-router-dom";
+import { getAddress } from "../../../State/Address/Action";
+import ListAddressCard from "../AddressCard/ListAddressCard";
+
 const DeliveryAddressForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const {address} = useSelector( (store) => store)
+  
+ 
+
+  useEffect(()=>{
+    dispatch(getAddress())
+  },[dispatch])
+
+
+  const handleSubmit=(event)=>{
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    const address = {
-      firstName: data.get("firstName"),
-      lastName: data.get("lastName"),
-      streetAddress: data.get("address"),
-      city: data.get("city"),
-      zipCode: data.get("zip"),
-      provice: data.get("provice"),
-      mobile: data.get("phoneNumber"),
-    };
+    const address ={
+      firstName:data.get("firstName"),
+      lastName:data.get("lastName"),
+      streetAddress:data.get("address"),
+      city:data.get("city"),
+      zipCode:data.get("zip"),
+      // provice:data.get("provice"),
+      mobile:data.get("phoneNumber"),
+    }
 
-    const orderData = { address, navigate };
-    dispatch(createOrder(orderData));
-    console.log("address", address);
-  };
+    const orderData={address,navigate}
+    dispatch(createOrder(orderData))
+    console.log("address",address)
+
+    
+
+  }
+
+  
 
   return (
     <div>
@@ -37,7 +54,7 @@ const DeliveryAddressForm = () => {
           className="border rounded-e-md shadow-md h-[30.5rem] overflow-y-scroll"
         >
           <div className="p-5 py-7 border-b cursor-pointer">
-            <AdressCard />
+          {address.address?.map((item)=><ListAddressCard address={item}/>)}
           </div>
         </Grid>
 
@@ -55,7 +72,7 @@ const DeliveryAddressForm = () => {
                     autoComplete="given-name"
                   />
                 </Grid>
-
+                
                 <Grid item xs={12} sm={6}>
                   <TextField
                     required
@@ -65,7 +82,11 @@ const DeliveryAddressForm = () => {
                     fullWidth
                     autoComplete="given-name"
                   />
+
+                 
                 </Grid>
+
+                
 
                 <Grid item xs={12}>
                   <TextField
@@ -102,7 +123,7 @@ const DeliveryAddressForm = () => {
                   />
                 </Grid>
 
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <TextField
                     required
                     id="provice"
@@ -111,7 +132,7 @@ const DeliveryAddressForm = () => {
                     fullWidth
                     autoComplete="given-name"
                   />
-                </Grid>
+                </Grid> */}
 
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -134,6 +155,8 @@ const DeliveryAddressForm = () => {
                     Deliver here
                   </Button>
                 </Grid>
+
+
               </Grid>
             </form>
           </Box>

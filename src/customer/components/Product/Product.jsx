@@ -56,6 +56,7 @@ export default function Product() {
   const param = useParams();
   const dispatch = useDispatch();
   const { products } = useSelector((store) => store);
+  console.log(products)
 
   const decodeedQueryString = decodeURIComponent(location.search);
   const searchParamms = new URLSearchParams(decodeedQueryString);
@@ -107,18 +108,19 @@ export default function Product() {
       priceValue === null ? [0, 0] : priceValue.split("-").map(Number);
 
     const data = {
-      category: param.LevelThree,
+      category: param.LevelThree || "",
       colors: colorValue || [],
-      sizes: sizeValue | [],
+      sizes: sizeValue || [],
       minPrice,
-      maxPrice,
+      maxPrice: 10000000,
       minDiscount: disccount || 0,
       sort: sortValue || "price_low",
       pageNumber: pageNumber - 1,
-      pageSize: 1,
+      pageSize: 10,
       stock: stock,
     };
     dispatch(findProducts(data));
+    console.log(products)
   }, [
     param.LevelThree,
     colorValue,

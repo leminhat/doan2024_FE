@@ -11,6 +11,7 @@ import Order from "../customer/components/Order/Order";
 import OrderDetails from "../customer/components/Order/OrderDetails";
 import Cart from "../customer/components/Cart/Cart";
 import PaymentSuccess from "../customer/components/Payment/PaymentSuccess";
+import VnpayCallback from "../customer/components/Payment/VnpayCallBack";
 
 const CustomerRouters = () => {
   return (
@@ -33,6 +34,8 @@ const CustomerRouters = () => {
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/account/order" element={<Order />}></Route>
             <Route path="/account/order/:orderId" element={<OrderDetails />}></Route>
+            <Route path="/payment/:orderId" element={<PaymentSuccess/>}></Route>
+            {/* <Route path="/payment/vnpay_return" element={<VnpayCallback />} /> */}
         </Routes>
         <div>
           <Footer/>

@@ -20,6 +20,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+
+
 export default function Navigation() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
@@ -30,6 +32,11 @@ export default function Navigation() {
   const openUserMenu = Boolean(anchorEl);
   const jwt = localStorage.getItem("jwt");
   const dispatch  = useDispatch();
+
+
+  const navigateCart=()=>{
+   navigate("/cart")
+  }
 
   const handleUserClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -43,7 +50,7 @@ export default function Navigation() {
   };
   const handleClose = () => {
     setOpenAuthModal(false);
-    navigate("/")
+    // navigate("/")
   };
 
   const {auth} = useSelector(store => store)
@@ -468,13 +475,14 @@ export default function Navigation() {
                 <div className="ml-4 flow-root lg:ml-6">
                   <Button
                     className="group -m-2 flex items-center p-2"
+                    onClick={()=>navigateCart()}
                   >
                     <ShoppingBagIcon
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />
                     <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                      2
+                      
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
                   </Button>

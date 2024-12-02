@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import AdressCard from "../AdressCard/AdressCard";
+import AddressCard from "../AddressCard/AddressCard";
 import { Button, Divider } from "@mui/material";
 import CartItem from "../Cart/CartItem";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderById } from "../../../State/Order/Action";
 import { useLocation } from "react-router-dom";
+import { createPayment } from "../../../State/Payment/Action";
 
 const OrderSumary = () => {
   const dispatch = useDispatch();
@@ -13,14 +14,20 @@ const OrderSumary = () => {
   const searchParams=new URLSearchParams(location.search);
   const orderId = searchParams.get("order_id")
 
+  const handlerCheckOut = () => {
+      console.log(order.order);
+      dispatch(createPayment(order.order));
+  }
+
   useEffect(()=>{
+    console.log("OrderSummary")
     dispatch(getOrderById(orderId))
   },[orderId])
 
   return (
     <div>
       <div className="p-5 shadow-lg  rounded-s-md border">
-        <AdressCard address={order.order?.shippingAddress}/>
+        <AddressCard address={order.order?.shippingAddress}/>
       </div>
       <div>
         <div className="lg:grid grid-cols-3 relative">
@@ -54,12 +61,12 @@ const OrderSumary = () => {
 
                 <div className="flex justify-between pt-3 text-black font-bold">
                   <span>Total Amount</span>
-                  <span className=" text-green-600">{order.order?.totalDiscountedPrice}$</span>
+                  <span className=" text-green-600">{order.order?.toltalDiscountedPrice}$</span>
                 </div>
               </div>
 
-              <Button variant="contanined" className="w-full mt-5" sx={{px:"2.5rem", py:".7rem", bgcolor:"#9155fd"}}>
-                Check out
+              <Button onClick={handlerCheckOut} variant="contanined" className="w-full mt-5" sx={{px:"2.5rem", py:".7rem", bgcolor:"#9155fd"}}>
+                PAYMENT
               </Button>
 
             

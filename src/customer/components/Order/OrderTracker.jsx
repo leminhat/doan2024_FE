@@ -9,7 +9,8 @@ const steps=[
     "Delivered"
 ]
 
-const OrderTraker = ({activeStep}) => {
+const OrderTracker = ({ activeStepLabel }) => {
+    const activeStep = steps.indexOf(activeStepLabel);
 
   return (
     <div className='w-full'>
@@ -25,4 +26,4 @@ const OrderTraker = ({activeStep}) => {
   )
 }
 
-export default OrderTraker
+export default OrderTracker

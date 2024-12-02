@@ -49,10 +49,11 @@ export const removeCartItem = (cartItemId) => async (dispatch) => {
 
 export const updateCartItem = (reqData) => async (dispatch) => {
   dispatch({ type: UPDATE_CART_ITEM_REQUEST });
-
+  
+  console.log(reqData.data)
   try {
     const { data } = await api.put(
-      `/api/cart_items/${reqData.cartItemId}`,
+      `/api/cart_items/update/${reqData.cartItemId}`,
       reqData.data
     );
     dispatch({ type: UPDATE_CART_ITEM_SUCCESS, payload: data });

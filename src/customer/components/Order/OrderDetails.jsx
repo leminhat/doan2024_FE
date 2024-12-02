@@ -1,63 +1,76 @@
-import React from "react";
-import AdressCard from "../AdressCard/AdressCard";
-import OrderTraker from "./OrderTraker";
+import React, { useEffect } from "react";
+import AddressCard from "../AddressCard/AddressCard";
 import { Box, Grid } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { getOrderById } from "../../../State/Order/Action";
+import OrderTracker from "./OrderTracker";
 
 const OrderDetails = () => {
+  const { orderId } = useParams();
+  const dispatch = useDispatch();
+  const { order } = useSelector(store => store);
+  console.log(order)
+  useEffect(() => {
+    dispatch(getOrderById(orderId))
+  }, [orderId])
+
+
   return (
     <div className="px:5 lg:px-20 ">
       <div>
         <h1 className="font-semibold text-lg py-5">Delivery Address</h1>
-        <AdressCard />
+        <AddressCard address={order.order?.shippingAddress} />
       </div>
 
       <div className="py-10">
-        <OrderTraker />
+      <OrderTracker activeStepLabel="Shipped" />
       </div>
 
-      <Grid className="space-x-5" container>
-        {[1,1,1,1,1,1].map((item)=><Grid
-          item
-          container
-          className="shadow-xl rounded-md border p-5"
-          sx={{ alignItems: "center", justifyContent: "space-between" }}
-        >
-          <Grid item xs={6}>
-            <div className="flex items-center space-x-4">
-              <img
-                className="w-[5rem] h-[5rem] object-cover object-top"
-                src="https://rukminim1.flixcart.com/image/612/612/l5h2xe80/kurta/x/6/n/xl-kast-tile-green-majestic-man-original-imagg4z33hu4kzpv.jpeg?q=70"
-                alt=""
-              />
+      <Grid container spacing={2}>
+        {order.order?.orderItems.map((orderitem) =>
+          <Grid
+            item
+            container
+            className="shadow-xl rounded-md border p-5 m-2"
+            sx={{ alignItems: "center", justifyContent: "space-between", marginBottom: "20px" }}>
 
-              <div className="space-y-2 ml-5">
-                <p className="font-semibold">ahihi</p>
-                <p className="space-x-5 opacity-50 text-xs font-semibold">
-                  <span>color: black</span>
-                  <span>size: k</span>
-                </p>
-                <p>Seller: HIu</p>
-                <p>1000$</p>
-              
-                
+            <Grid item xs={6}>
+              <div className="flex items-center space-x-4">
+                <img
+                  className="w-[5rem] h-[5rem] object-cover object-top"
+                  src={orderitem.product.imageUrl}
+                  alt=""
+                />
+
+                <div className="space-y-2 ml-5">
+
+                  <p className='font-semibold'>{orderitem.product.title}</p>
+                  <p className='opacity-50 text-xs font-semibold'>Size: {orderitem.size},   Quantity: {orderitem.quantity}   </p>
+                 
+                  <p>Brand: {orderitem.product.brand}</p>
+                  <p>{orderitem.discountedPrice} VND</p>
+
+
+                </div>
+
               </div>
 
-            </div>
+            </Grid>
 
-          </Grid>
+            <Grid>
+              <Box sx={{ color: deepPurple[500] }}>
+                <StarBorderIcon sx={{ fontSize: "2rem" }} className="px-2" />
+                <span>Rate & Review Product</span>
 
-          <Grid>
-            <Box sx={{color:deepPurple[500]}}>
-              <StarBorderIcon sx={{fontSize:"2rem"}} className="px-2"/>
-              <span>Rate & Review Product</span>
+              </Box>
+            </Grid>
 
-            </Box>
-          </Grid>
+          </Grid>)
+        }
 
-        </Grid>)}
-        
       </Grid>
     </div>
   );

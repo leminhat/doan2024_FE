@@ -19,7 +19,7 @@ export const customerProductReducer=(state=initialstate, action)=>{
         case FIND_PRODUCT_SUCCESS:
             return{...state, loading:false, error:null,products:action.payload}
         case FIND_PRODUCT_BY_ID_SUCCESS:
-            return{...state, loading:false, error:null,products:action.payload}
+            return{...state, loading:false, error:null,product: action.payload}
         case DELETE_PRODUCT_SUCCESS:
             return{...state,loading:false,error:null,deletedProduct:action.payload}
         case FIND_PRODUCT_FAILURE:

@@ -1,12 +1,13 @@
 import { api } from "../../config/apiConfig";
-import { CREATE_ORDER_FAILURE, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS, GET_ORDER_BY_ID_FAILURE, GET_ORDER_BY_ID_REQUEST, GET_ORDER_BY_ID_SUCCESS } from "./ActionType";
+import { CREATE_ORDER_FAILURE, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS, GET_ORDER_BY_ID_FAILURE, GET_ORDER_BY_ID_REQUEST, GET_ORDER_BY_ID_SUCCESS, GET_ORDER_HISTORY_FAILURE, GET_ORDER_HISTORY_REQUEST, GET_ORDER_HISTORY_SUCCESS } from "./ActionType";
 
 export const createOrder=(reqData)=>async(dispatch)=>{
-    dispatch({tyoe:CREATE_ORDER_REQUEST});
+    dispatch({type:CREATE_ORDER_REQUEST});
+    console.log(reqData.address)
 
     try{
-        const{data}= await api.post(`/api/order/`, reqData.address,);
-
+        const{data}= await api.post(`/api/orders/`, reqData.address,);
+        console.log(data)
         if(data.id){
             reqData.navigate({search:`step=3&order_id=${data.id}`});
         }
@@ -28,10 +29,11 @@ export const getOrderById=(orderId)=>async(dispatch)=>{
     dispatch({type:GET_ORDER_BY_ID_REQUEST});
 
     try{
-        const{data}= await api.get(`/api/order/${orderId}`);
+        const{data}= await api.get(`/api/orders/${orderId}`);
 
         
         console.log("order by id ", data);
+        
         dispatch({
             type:GET_ORDER_BY_ID_SUCCESS,
             payload:data,
@@ -40,6 +42,28 @@ export const getOrderById=(orderId)=>async(dispatch)=>{
         console.log("catch ", error);
         dispatch({
             type:GET_ORDER_BY_ID_FAILURE,
+            payload: error.message,
+        });
+    }
+};
+
+export const getOrderByUser=()=>async(dispatch)=>{
+    dispatch({type:GET_ORDER_HISTORY_REQUEST});
+
+    try{
+        const{data}= await api.get(`/api/orders/user`);
+
+        
+        console.log("order by user ", data);
+        
+        dispatch({
+            type:GET_ORDER_HISTORY_SUCCESS,
+            payload:data,
+        })
+    }catch(error){
+        console.log("catch ", error);
+        dispatch({
+            type:GET_ORDER_HISTORY_FAILURE,
             payload: error.message,
         });
     }

@@ -43,19 +43,19 @@ const product = {
   ],
   images: [
     {
-      src: "https://tailwindui.com/plus/img/ecommerce-images/product-page-02-secondary-product-shot.jpg",
+      src: "https://oldsailor.com.vn/vnt_upload/product/08_2022/4d5eb2c18f954acb13848.jpg",
       alt: "Two each of gray, white, and black shirts laying flat.",
     },
     {
-      src: "https://tailwindui.com/plus/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg",
+      src: "https://oldsailor.com.vn/vnt_upload/product/08_2022/4d5eb2c18f954acb13848.jpg",
       alt: "Model wearing plain black basic tee.",
     },
     {
-      src: "https://tailwindui.com/plus/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg",
+      src: "https://oldsailor.com.vn/vnt_upload/product/08_2022/4d5eb2c18f954acb13848.jpg",
       alt: "Model wearing plain gray basic tee.",
     },
     {
-      src: "https://tailwindui.com/plus/img/ecommerce-images/product-page-02-featured-product-shot.jpg",
+      src: "https://oldsailor.com.vn/vnt_upload/product/08_2022/4d5eb2c18f954acb13848.jpg",
       alt: "Model wearing plain white basic tee.",
     },
   ],
@@ -90,20 +90,25 @@ function classNames(...classes) {
 export default function ProductDetails() {
 
   const [selectedSize, setSelectedSize] = useState();
+  
+  
 
-  const navigate= useNavigate();
-  const params =useParams();
+  const navigate = useNavigate();
+  const params = useParams();
   const dispatch = useDispatch();
-  const {products} =useSelector(store=>store)
+  const {products} = useSelector(store=>store)
+  console.log(products.product)
 
  const handlerAddToCart=()=>{
-  const data ={productId:params.productId,size:selectedSize}
+  const data ={productId:params.productId,size:selectedSize.name}
+  console.log(data)
   dispatch(addItemToCart(data))
   navigate("/cart")
  }
 
  useEffect(()=>{
   const data = {productId:params.productId}
+  
   dispatch(findProductsById(data))
 
  },[params.productId])
@@ -144,7 +149,7 @@ export default function ProductDetails() {
                 aria-current="page"
                 className="font-medium text-gray-500 hover:text-gray-600"
               >
-                {product.name}
+                {products.product?.title}
               </a>
             </li>
           </ol>
@@ -154,15 +159,16 @@ export default function ProductDetails() {
           {/* Image gallery */}
           <div className="flex flex-col items-center">
             <div className="overflow-hidden rounded-lg max-w-[30rem] max-h[35rem]">
+              
               <img
-                alt={products?.product?.imageUrl}
-                src=""
+                alt="anh loi"
+                src={products?.product?.imageUrl}
                 className="h-full w-full object-cover object-center"
               />
             </div>
             <div className="flex flex-wrap space-x-5 justify-center">
             {/* product.images */}
-              {products.product?.map((item) => (
+              {/* {products.product?.map((item) => (
                 <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4">
                   <img
                     alt={item.alt}
@@ -170,7 +176,7 @@ export default function ProductDetails() {
                     className="h-full w-full object-cover object-center"
                   />
                 </div>
-              ))}
+              ))} */}
             </div>
           </div>
 
@@ -191,15 +197,15 @@ export default function ProductDetails() {
               <h2 className="sr-only">Product information</h2>
 
               <div className="flex space-x-5 items-center text-lg lg:text-xl text-gray-900 mt-6">
-                <p className="font-semibold">{products.product?.desccountedPrice}</p>
+                <p className="font-semibold">{products.product?.discountedPrice}</p>
                 <p className="opacity-50 line-through">{products.product?.price}</p>
-                <p className="text-green-600">{products.product?.disccountPersent}% off</p>
+                <p className="text-green-600">{products.product?.discountPercent}% off</p>
               </div>
 
               {/* Reviews */}
               <div className="mt-6">
                 <div className="flex items-center space-x-3">
-                  <Rating name="read-only" value={5.5} readOnly />
+                  <Rating name="read-only" value={4.0} readOnly />
                   <p className="opacity-50 text-sm">2631 Ratings</p>
                   <p className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
                     12313 Reviews
@@ -221,21 +227,21 @@ export default function ProductDetails() {
                       onChange={setSelectedSize}
                       className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4"
                     >
-                      {/* product.sizes */}
-                      {products.product?.map((size) => (
+                      
+                      {products?.product?.sizes.map((size) => (
                         <Radio
                           key={size.name}
                           value={size}
-                          disabled={!size.inStock}
+                          disabled={!size.quantity}
                           className={classNames(
-                            size.inStock
+                            size.quantity
                               ? "cursor-pointer bg-white text-gray-900 shadow-sm"
                               : "cursor-not-allowed bg-gray-50 text-gray-200",
                             "group relative flex items-center justify-center rounded-md border px-4 py-3 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none data-[focus]:ring-2 data-[focus]:ring-indigo-500 sm:flex-1 sm:py-6"
                           )}
                         >
                           <span>{size.name}</span>
-                          {size.inStock ? (
+                          {size.quantity ? (
                             <span
                               aria-hidden="true"
                               className="pointer-events-none absolute -inset-px rounded-md border-2 border-transparent group-data-[focus]:border group-data-[checked]:border-indigo-500"
@@ -284,7 +290,7 @@ export default function ProductDetails() {
 
                 <div className="space-y-6">
                   <p className="text-base text-gray-900">
-                    {product.description}
+                    {products.product?.description}
                   </p>
                 </div>
               </div>
@@ -296,11 +302,11 @@ export default function ProductDetails() {
 
                 <div className="mt-4">
                   <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                    {product.highlights.map((highlight) => (
-                      <li key={highlight} className="text-gray-400">
-                        <span className="text-gray-600">{highlight}</span>
-                      </li>
-                    ))}
+                      {/* {product.highlights.map((highlight) => (
+                        <li key={highlight} className="text-gray-400">
+                          <span className="text-gray-600">{highlight}</span>
+                        </li>
+                      ))} */}
                   </ul>
                 </div>
               </div>
@@ -309,7 +315,7 @@ export default function ProductDetails() {
                 <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
                 <div className="mt-4 space-y-6">
-                  <p className="text-sm text-gray-600">{product.details}</p>
+                  <p className="text-sm text-gray-600">Sản phâm tốt</p>
                 </div>
               </div>
             </div>
@@ -436,9 +442,9 @@ export default function ProductDetails() {
           <h1 className="py-5 text-xl font-bold">Similer Products</h1>
 
           <div className="flex flex-wrap space-y-5">
-            {products.product?.map((item) => (
+            {/* {products.product?.map((item) => (
               <HomeSelectionCard product={item} />
-            ))}
+            ))} */}
           </div>
         </section>
       </div>

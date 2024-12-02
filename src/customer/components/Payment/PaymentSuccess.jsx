@@ -4,30 +4,30 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useSearchParams } from "react-router-dom";
 import { getOrderById } from "../../../State/Order/Action";
 import { updatePayment } from "../../../State/Payment/Action";
-import { Alert, AlertTitle, Grid } from "@mui/material";
-import OrderTraker from "../Order/OrderTraker";
+import { Alert, AlertTitle, Grid, Grid2 } from "@mui/material";
+
+import AddressCard from "../AddressCard/AddressCard";
+import OrderTracker from "../Order/OrderTracker";
+
 
 const PaymentSuccess = () => {
   const [paymentId, setPaymentId] = useState();
   const [referenceId, setReferebceId] = useState();
   const [paymentStatus, setPaymentStatus] = useState();
   const { orderId } = useParams();
+  const [searchParams] = useSearchParams();
 
   const dispatch = useDispatch();
   const { order } = useSelector((store) => store);
+  console.log(order.order)
+
+  const params = Object.fromEntries(searchParams.entries());
 
   useEffect(() => {
-    const urlParam = new URLSearchParams(window.location.search);
-
-    setPaymentId(urlParam.get("razorpay_payment_link_id"));
-    setPaymentStatus(urlParam.get("razorpay_payment_link_status"));
-  }, []);
-
-  useEffect(() => {
-    const data = { orderId, paymentId };
+    const data = { orderId, paymentId, params};
     dispatch(getOrderById(orderId));
     dispatch(updatePayment(data));
-  }, [orderId, paymentId]);
+  }, [orderId, paymentId] );
 
   return (
     <div className="px-2 lg:px-36">
@@ -38,40 +38,44 @@ const PaymentSuccess = () => {
           sx={{ mb: 6, width: "fit-content" }}
         >
           <AlertTitle>Payment Success</AlertTitle>
-          congratulation Your Order Get Placed
+          Congratulation Your Order Get Placed
         </Alert>
       </div>
-      <OrderTraker activeStep={1} />
+      <OrderTracker activeStepLabel="Placed" />
 
-      <Grid container className="space-y-5 py-5 pt-20">
-        {order.order?.orderItem.map((item) => (
+      <Grid2 container className="space-y-5 py-5 pt-20">
+        {order.order?.orderItems.map((item) => (
           <Grid
             container
             item
             className="shadow-xl rounded-md p-5"
             sx={{ alignItems: "center", justifyContent: "space-between" }}
           >
-            <Grid item xs={6}>
+            <Grid2 item xs={6}>
               <div className="flex items-center">
                 <img
                   className="w-[5rem] h-[5rem] object-cover object-top"
-                  src=""
+                  src={item.product.imageUrl}
                   alt=""
                 />
 
-                <div>
+                <div className="ml-5 space-y-2">
                   <p>{item.product.title}</p>
-                  <div>
-                    <span>Color:</span>
-                   
+                  <div className="opacity-50 text xs font-semibold-x-5">
+                    <span>Color: {item.color}</span>
+                    <span>Size: {item.size}</span> 
                   </div>
-                  <span></span>
+                  <p>Brand: {item.product.brand}</p>
+                  <p>{item.price}</p>
                 </div>
               </div>
-            </Grid>
+            </Grid2>
+            <Grid2 item>
+                  <AddressCard address={order.order.shippingAddress}/>
+            </Grid2>
           </Grid>
         ))}
-      </Grid>
+      </Grid2>
     </div>
   );
 };
