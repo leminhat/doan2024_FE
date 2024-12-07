@@ -14,15 +14,17 @@ const Cart = () => {
     navigate("/checkout?step=2");
   };
 
+  console.log(cart.cart)
+
   useEffect(() => {
     dispatch(getCart());
-  }, [cart.updateCatItem, cart.deleteCartItem]);
+  }, [cart.updateCartItem, cart.deleteCartItem]);
 
   return (
     <div>
       <div className="lg:grid grid-cols-3 lg:px-16 relative">
         <div className="col-span-2">
-          {cart.cart?.cartItems.map((item) => (
+          {cart.cart?.cartItems.sort((pre,now)=>pre.id-now.id).map((item) => (
             <CartItem item={item} />
           ))}
         </div>

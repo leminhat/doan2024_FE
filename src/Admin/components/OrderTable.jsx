@@ -6,6 +6,7 @@ import {
   deliveredOrder,
   getOrders,
   shipOrder,
+  cancelOrder,
 } from "../../State/Admin/Order/Action";
 import {
   Avatar,
@@ -41,11 +42,11 @@ const OrderTable = () => {
   const dispatch = useDispatch();
 
   const { adminOrder } = useSelector((store) => store);
-  console.log(adminOrder)
+  console.log(adminOrder.orders)
 
   useEffect(() => {
     dispatch(getOrders());
-  }, [adminOrder.confirmed, adminOrder.shipped, adminOrder.delivered, adminOrder.deletedOrder]);
+  }, [adminOrder.confirmed, adminOrder.shipped, adminOrder.delivered, adminOrder.deletedOrder,adminOrder.canceled]);
 
   const handleShipOrder = (orderId) => {
     dispatch(shipOrder(orderId));
@@ -60,10 +61,15 @@ const OrderTable = () => {
   const handleDileverOrder = (orderId) => {
     dispatch(deliveredOrder(orderId));
     handleClose();
-  };
+  }; 
 
   const handleDeleteOrder = (orderId) => {
     dispatch(deleteOrder(orderId));
+    handleClose();
+  };
+
+  const handleCancelOrder = (orderId) => {
+    dispatch(cancelOrder(orderId));
     handleClose();
   };
 
@@ -105,21 +111,22 @@ const OrderTable = () => {
                   </TableCell>
 
                   <TableCell align="left">{item.id}</TableCell>
-                  <TableCell align="left">{item.totalPrice}</TableCell>
+                  <TableCell align="left">{item.toltalDiscountedPrice}</TableCell>
                   <TableCell align="left">
                     <span
                       className={`text-white px-5 py-2 rounded-full
-                    ${
-                      item.orderStatus === "CONFIRMED"
-                        ? "bg-[#2aac2a]"
-                        : item.orderStatus === "SHIPPED"
-                        ? "bg-[#2222a8]"
-                        : item.orderStatus === "PLACED"
-                        ? "bg-[#1d6e88]"
-                        : item.orderStatus === "PENDING"
-                        ? "bg-[gray]"
-                        : "bg-[#148a3e]"
-                    }`}
+                    ${item.orderStatus === "CONFIRMED"
+                          ? "bg-[#2aac2a]"
+                          : item.orderStatus === "SHIPPED"
+                            ? "bg-[#2222a8]"
+                            : item.orderStatus === "PLACED"
+                              ? "bg-[#1d6e88]"
+                              : item.orderStatus === "PENDING"
+                                ? "bg-[gray]"
+                                : item.orderStatus === "CANCEL"
+                                  ? "bg-[red]"
+                                  : "bg-[#148a3e]"
+                        }`}
                     >
                       {item.orderStatus}
                     </span>
@@ -128,7 +135,7 @@ const OrderTable = () => {
                     <Button
                       id="basic-button"
                       aria-haspopup="true"
-                      onClick={(event)=>handleClick(event,index)}
+                      onClick={(event) => handleClick(event, index)}
                       aria-controls={`basic-menu-{item.id}`}
                       aria-expanded={Boolean(anchorEl[index])}
                     >
@@ -138,7 +145,7 @@ const OrderTable = () => {
                       id={`basic-menu-${item.id}`}
                       anchorEl={anchorEl[index]}
                       open={Boolean(anchorEl[index])}
-                      onClose={()=>handleClose(index)}
+                      onClose={() => handleClose(index)}
                       MenuListProps={{
                         "aria-labelledby": "basic-button",
                       }}
@@ -151,6 +158,9 @@ const OrderTable = () => {
                       </MenuItem>
                       <MenuItem onClick={() => handleDileverOrder(item.id)}>
                         Delivered Order
+                      </MenuItem>
+                      <MenuItem onClick={() => handleCancelOrder(item.id)}>
+                        Cancel Order
                       </MenuItem>
                     </Menu>
                   </TableCell>

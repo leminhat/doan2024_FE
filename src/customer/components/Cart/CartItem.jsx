@@ -5,14 +5,26 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useDispatch } from "react-redux";
 import { removeCartItem, updateCartItem } from "../../../State/Cart/Action";
 import React, { useState } from "react";
+import { getCart } from "../../../State/Cart/Action";
 const CartItem = ({item}) => {
   
   
-  const dispatch =useDispatch();
+  const dispatch = useDispatch();
+  const [quantity, setQuantity] = useState(item.quantity);
+  
+  console.log(item)
+  const size = item.size
+  const sizeData = item.product.sizes.find(s => s.name === size)
+  
+
   const handleUpdateCartItem=(num)=>{
+
+    setQuantity(quantity+num);
+ 
     const data ={data:{quantity:item.quantity+num},cartItemId:item?.id}
-   
     dispatch(updateCartItem(data))
+  
+    
   }
 
 
@@ -20,7 +32,7 @@ const CartItem = ({item}) => {
     dispatch(removeCartItem(item.id))
   }
   return (
-    <div className="p-5 shadow-lg border rounded-md">
+    <div className="p-5 shadow-lg border rounded-md m-3">
       <div className="flex items-center">
         <div className="w-[5rem] h-[5rem] lg:w-[9rem] lg:h-[9rem]">
           <img
@@ -41,23 +53,18 @@ const CartItem = ({item}) => {
             <p className="opacity-50 line-through">{item.price}$</p>
             <p className="text-green-600">{item.product.discountPercent}% off</p>
           </div>
-
-          
-
         </div>
-        
-
       </div>
+      
       <div className="lg:flex items-center lg:space-x-10 pt-4">
             <div className="flex items-center space-x-2">
               <IconButton onClick={()=>handleUpdateCartItem(-1)} disabled={item.quantity<=1}>
                 <RemoveCircleOutlineIcon/>
               </IconButton>
               <span className="py-1 px-7 border rounded-sm">{item.quantity}</span>
-              <IconButton onClick={()=>handleUpdateCartItem(1)} sx={{color:"RGB(145 85 253)"}}>
+              <IconButton onClick={()=>handleUpdateCartItem(1)} sx={{color:"RGB(145 85 253)"}} disabled = {item.quantity>=sizeData.quantity} >
                 <AddCircleOutlineIcon/>
-              </IconButton>
-              
+              </IconButton>  
             </div>
 
             <div>

@@ -41,7 +41,7 @@ const PaymentSuccess = () => {
           Congratulation Your Order Get Placed
         </Alert>
       </div>
-      <OrderTracker activeStepLabel="Placed" />
+      <OrderTracker activeStepLabel="PLACED" />
 
       <Grid2 container className="space-y-5 py-5 pt-20">
         {order.order?.orderItems.map((item) => (

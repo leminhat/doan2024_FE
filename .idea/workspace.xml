@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e0a692f-bff0-4bfd-9f68-65fb29732e0e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Admin/components/CreateProductForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Admin/components/CreateProductForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/mens_kurta.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/mens_kurta.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Routers/CustomerRouters.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Routers/CustomerRouters.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/customer/components/Product/Product.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/customer/components/Product/Product.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +62,7 @@
       <workItem from="1731901789928" duration="1530000" />
       <workItem from="1731917220088" duration="2121000" />
       <workItem from="1732263247859" duration="71000" />
+      <workItem from="1733130901710" duration="1644000" />
     </task>
     <servers />
   </component>
@@ -92,7 +90,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/customer/components/Product/Product.jsx</url>
-          <line>267</line>
+          <line>269</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

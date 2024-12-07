@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  cancelOrder,
   confirmOrder,
   deleteOrder,
   deliveredOrder,
@@ -71,6 +72,11 @@ const OrderTableView = () => {
     handleClose();
   };
 
+  const handleCancelOrder = (orderId) => {
+    dispatch(cancelOrder(orderId));
+    handleClose();
+  };
+
   return (
     <div className="p-3">
       <Card className="mt-2 bg-[#1b1b1b]">
@@ -120,6 +126,8 @@ const OrderTableView = () => {
                               ? "bg-[#1d6e88]"
                               : item.orderStatus === "PENDING"
                               ? "bg-[gray]"
+                              : item.orderStatus === "CANCEL"
+                              ? "bg-[red]"
                               : "bg-[#148a3e]"
                           }`}
                     >
@@ -153,6 +161,9 @@ const OrderTableView = () => {
                       </MenuItem>
                       <MenuItem onClick={() => handleDileverOrder(item.id)}>
                         Delivered Order
+                      </MenuItem>
+                      <MenuItem onClick={() => handleCancelOrder(item.id)}>
+                        Cancel Order
                       </MenuItem>
                     </Menu>
                   </TableCell>

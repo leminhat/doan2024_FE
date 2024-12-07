@@ -26,7 +26,8 @@ const OrderDetails = () => {
       </div>
 
       <div className="py-10">
-      <OrderTracker activeStepLabel="Shipped" />
+      <OrderTracker activeStepLabel={order.order?.orderStatus}/>
+      
       </div>
 
       <Grid container spacing={2}>

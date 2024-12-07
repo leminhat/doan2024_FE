@@ -2,15 +2,16 @@ import { StepLabel, Stepper,Step } from '@mui/material'
 import React from 'react'
 
 const steps=[
-    "Placed",
-    "Order Confirmed",
-    "Shipped",
-    "Out For Delivery",
-    "Delivered"
+    
+    "PLACED",
+    "CONFIRMED",
+    "SHIPPED",
+    "DELIVERY",
+    
 ]
 
 const OrderTracker = ({ activeStepLabel }) => {
-    const activeStep = steps.indexOf(activeStepLabel);
+    const activeStep = steps.indexOf(activeStepLabel)+1;
 
   return (
     <div className='w-full'>

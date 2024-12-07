@@ -228,7 +228,7 @@ export default function ProductDetails() {
                       className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4"
                     >
                       
-                      {products?.product?.sizes.map((size) => (
+                      {products?.product?.sizes.sort((a, b) => a.name.localeCompare(b.name)).map((size) => (
                         <Radio
                           key={size.name}
                           value={size}
