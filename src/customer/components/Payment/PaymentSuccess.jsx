@@ -23,25 +23,41 @@ const PaymentSuccess = () => {
 
   const params = Object.fromEntries(searchParams.entries());
 
+  console.log(params.vnp_ResponseCode)
+
   useEffect(() => {
-    const data = { orderId, paymentId, params};
+    const data = { orderId, paymentId, params };
     dispatch(getOrderById(orderId));
     dispatch(updatePayment(data));
-  }, [orderId, paymentId] );
+  }, [orderId, paymentId]);
 
   return (
     <div className="px-2 lg:px-36">
       <div className="flex flex-col justify-center items-center">
-        <Alert
+
+        {params.vnp_ResponseCode == "00" ? (
+          <Alert
+            variant="filled"
+            severity="success"
+            sx={{ mb: 6, width: "fit-content" }}
+          >
+            <AlertTitle>Payment Success</AlertTitle>
+            Congratulation Your Order Get Placed
+          </Alert>
+        ) : (<Alert
           variant="filled"
-          severity="success"
+          severity="error"
           sx={{ mb: 6, width: "fit-content" }}
         >
-          <AlertTitle>Payment Success</AlertTitle>
-          Congratulation Your Order Get Placed
-        </Alert>
+          <AlertTitle>Payment Fail</AlertTitle>
+          Payment Error. Please Try Again
+        </Alert>)}
+
       </div>
-      <OrderTracker activeStepLabel="PLACED" />
+      {params.vnp_ResponseCode == "00" ? (
+        <OrderTracker activeStepLabel="PLACED" />
+      ) : (<OrderTracker activeStepLabel="PENDING" />)}
+
 
       <Grid2 container className="space-y-5 py-5 pt-20">
         {order.order?.orderItems.map((item) => (
@@ -63,7 +79,7 @@ const PaymentSuccess = () => {
                   <p>{item.product.title}</p>
                   <div className="opacity-50 text xs font-semibold-x-5">
                     <span>Color: {item.color}</span>
-                    <span>Size: {item.size}</span> 
+                    <span>Size: {item.size}</span>
                   </div>
                   <p>Brand: {item.product.brand}</p>
                   <p>{item.price}</p>
@@ -71,7 +87,7 @@ const PaymentSuccess = () => {
               </div>
             </Grid2>
             <Grid2 item>
-                  <AddressCard address={order.order.shippingAddress}/>
+              <AddressCard address={order.order.shippingAddress} />
             </Grid2>
           </Grid>
         ))}

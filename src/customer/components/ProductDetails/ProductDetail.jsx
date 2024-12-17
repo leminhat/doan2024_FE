@@ -11,27 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { findProductsById } from "../../../State/Product/Action";
 import { addItemToCart } from "../../../State/Cart/Action";
 
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    theme: {
-      extend: {
-        gridTemplateRows: {
-          '[auto,auto,1fr]': 'auto auto 1fr',
-        },
-      },
-    },
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -41,47 +20,9 @@ const product = {
     { id: 1, name: "Men", href: "#" },
     { id: 2, name: "Clothing", href: "#" },
   ],
-  images: [
-    {
-      src: "https://oldsailor.com.vn/vnt_upload/product/08_2022/4d5eb2c18f954acb13848.jpg",
-      alt: "Two each of gray, white, and black shirts laying flat.",
-    },
-    {
-      src: "https://oldsailor.com.vn/vnt_upload/product/08_2022/4d5eb2c18f954acb13848.jpg",
-      alt: "Model wearing plain black basic tee.",
-    },
-    {
-      src: "https://oldsailor.com.vn/vnt_upload/product/08_2022/4d5eb2c18f954acb13848.jpg",
-      alt: "Model wearing plain gray basic tee.",
-    },
-    {
-      src: "https://oldsailor.com.vn/vnt_upload/product/08_2022/4d5eb2c18f954acb13848.jpg",
-      alt: "Model wearing plain white basic tee.",
-    },
-  ],
-  colors: [
-    { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
-    { name: "Gray", class: "bg-gray-200", selectedClass: "ring-gray-400" },
-    { name: "Black", class: "bg-gray-900", selectedClass: "ring-gray-900" },
-  ],
-  sizes: [
-    { name: "S", inStock: true },
-    { name: "M", inStock: true },
-    { name: "L", inStock: true },
-    { name: "XL", inStock: true },
-  ],
-  description:
-    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
-  highlights: [
-    "Hand cut and sewn locally",
-    "Dyed with our proprietary colors",
-    "Pre-washed & pre-shrunk",
-    "Ultra-soft 100% cotton",
-  ],
-  details:
-    'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
+
 };
-const reviews = { href: "#", average: 4, totalCount: 117 };
+// const reviews = { href: "#", average: 4, totalCount: 117 };
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -90,28 +31,29 @@ function classNames(...classes) {
 export default function ProductDetails() {
 
   const [selectedSize, setSelectedSize] = useState();
-  
-  
 
   const navigate = useNavigate();
   const params = useParams();
   const dispatch = useDispatch();
-  const {products} = useSelector(store=>store)
-  console.log(products.product)
-
- const handlerAddToCart=()=>{
-  const data ={productId:params.productId,size:selectedSize.name}
-  console.log(data)
-  dispatch(addItemToCart(data))
-  navigate("/cart")
- }
-
- useEffect(()=>{
-  const data = {productId:params.productId}
+  const { products } = useSelector(store => store)
   
-  dispatch(findProductsById(data))
 
- },[params.productId])
+  const handlerAddToCart = () => {
+    const data = { productId: params.productId, size: selectedSize.name }
+    console.log(data)
+    dispatch(addItemToCart(data))
+    navigate("/cart")
+  }
+
+  useEffect(() => {
+    const data = { productId: params.productId }
+
+    dispatch(findProductsById(data))
+
+  }, [params.productId])
+
+  const totalReview = products.product?.reviews.length
+  const averageRating = products.product?.reviews.reduce((total, review) => total + review.rating, 0) / totalReview
 
   return (
     <div className="bg-white lg:px-20">
@@ -159,7 +101,7 @@ export default function ProductDetails() {
           {/* Image gallery */}
           <div className="flex flex-col items-center">
             <div className="overflow-hidden rounded-lg max-w-[30rem] max-h[35rem]">
-              
+
               <img
                 alt="anh loi"
                 src={products?.product?.imageUrl}
@@ -167,7 +109,7 @@ export default function ProductDetails() {
               />
             </div>
             <div className="flex flex-wrap space-x-5 justify-center">
-            {/* product.images */}
+              {/* product.images */}
               {/* {products.product?.map((item) => (
                 <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4">
                   <img
@@ -188,7 +130,7 @@ export default function ProductDetails() {
               </h1>
 
               <h1 className="text-lg lg:text-xl text-gray-900 opacity-60 pt-1">
-              {products.product?.title}
+                {products.product?.title}
               </h1>
             </div>
 
@@ -202,13 +144,17 @@ export default function ProductDetails() {
                 <p className="text-green-600">{products.product?.discountPercent}% off</p>
               </div>
 
-              {/* Reviews */}
+             
+
+                
               <div className="mt-6">
                 <div className="flex items-center space-x-3">
-                  <Rating name="read-only" value={4.0} readOnly />
-                  <p className="opacity-50 text-sm">2631 Ratings</p>
+                  { totalReview > 0 && (
+                    <Rating name="read-only" value={averageRating} precision={0.1} readOnly />
+                  )}
+                  <p className="opacity-50 text-sm">{totalReview} Ratings</p>
                   <p className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                    12313 Reviews
+                    {totalReview} Reviews
                   </p>
                 </div>
               </div>
@@ -227,7 +173,7 @@ export default function ProductDetails() {
                       onChange={setSelectedSize}
                       className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4"
                     >
-                      
+
                       {products?.product?.sizes.sort((a, b) => a.name.localeCompare(b.name)).map((size) => (
                         <Radio
                           key={size.name}
@@ -302,7 +248,7 @@ export default function ProductDetails() {
 
                 <div className="mt-4">
                   <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                      {/* {product.highlights.map((highlight) => (
+                    {/* {product.highlights.map((highlight) => (
                         <li key={highlight} className="text-gray-400">
                           <span className="text-gray-600">{highlight}</span>
                         </li>
@@ -330,8 +276,8 @@ export default function ProductDetails() {
             <Grid container spacing={7}>
               <Grid item xs={7}>
                 <div className="space-y-5">
-                  {[1, 1, 1].map((item) => (
-                    <ProductReviewCart />
+                  {products.product?.reviews?.map((item) => (
+                    <ProductReviewCart review={item}/>
                   ))}
                 </div>
               </Grid>
@@ -340,8 +286,8 @@ export default function ProductDetails() {
                 <h1 className="text-xl font-semibold pb-2">Product ratings</h1>
 
                 <div className="flex items-center space-x-3">
-                  <Rating value={4.6} precision={0.5} readOnly />
-                  <p className="opacity-60">23323 Ratings</p>
+                  <Rating value={averageRating} precision={0.5} readOnly />
+                  <p className="opacity-60">{totalReview} Ratings</p>
                 </div>
 
                 <Box className="mt-5">

@@ -15,8 +15,13 @@ export const createPayment = (reqData) => async (dispatch) => {
     const { data } = await api.post(`/api/payments/create_payment`, reqData);
     console.log(data)
 
-    if (data) {
-      window.location.href = data;
+    console.log(data.status)
+
+    if (!data.status) {
+      console.log(1)
+      alert(data.message)
+    } else{
+      window.location.href = data.message;
     }
   } catch (error) {
     dispatch({ type: CREATE_PAYMENT_FAILURE, payload: error.message });
@@ -27,11 +32,8 @@ export const updatePayment = (reqData) => async (dispatch) => {
   dispatch({ type: UPDATE_PAYMENT_REQUEST });
   // console.log(reqData.params)
   try {
-    console.log(reqData.params)
-    const { data } = await api.post(`/api/payments/update?order_id=${reqData.orderId}`,reqData.params);
-    console.log(data)
-    console.log("thanh cong")
-    
+
+    const { data } = await api.post(`/api/payments/update?order_id=${reqData.orderId}`, reqData.params);
   } catch (error) {
     console.log("loi", error.message)
     dispatch({ type: UPDATE_PAYMENT_FAILURE, payload: error.message });

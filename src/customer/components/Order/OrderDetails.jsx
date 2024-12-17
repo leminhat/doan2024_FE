@@ -1,22 +1,24 @@
 import React, { useEffect } from "react";
 import AddressCard from "../AddressCard/AddressCard";
-import { Box, Grid } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { deepPurple } from "@mui/material/colors";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderById } from "../../../State/Order/Action";
 import OrderTracker from "./OrderTracker";
 
 const OrderDetails = () => {
+  const navigate = useNavigate();
   const { orderId } = useParams();
   const dispatch = useDispatch();
   const { order } = useSelector(store => store);
-  console.log(order)
+  
   useEffect(() => {
     dispatch(getOrderById(orderId))
   }, [orderId])
 
+  
 
   return (
     <div className="px:5 lg:px-20 ">
@@ -62,9 +64,9 @@ const OrderDetails = () => {
             </Grid>
 
             <Grid>
-              <Box sx={{ color: deepPurple[500] }}>
-                <StarBorderIcon sx={{ fontSize: "2rem" }} className="px-2" />
-                <span>Rate & Review Product</span>
+              <Box onClick={()=>navigate(`/account/review/${orderitem.product.id}`)} sx={{ color: deepPurple[500] }}>
+                <StarBorderIcon   sx={{ fontSize: "2rem" }} className="px-2" />
+                <Button>Rate & Review Product</Button>
 
               </Box>
             </Grid>

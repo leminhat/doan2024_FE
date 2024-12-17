@@ -23,6 +23,7 @@ import OrderTable from "./components/OrderTable";
 
 import AdminDashboard from "./components/Dashboard";
 import CreateProductForm from "./components/CreateProductForm";
+import UpdateProductForm from "./components/UpdateProductForm";
 
 const menu = [
   { name: "Dashborad", path: "/admin", icon: <DashboardIcon /> },
@@ -96,6 +97,7 @@ const Admin = () => {
             <Route path="/" element={<AdminDashboard />}></Route>
             <Route path="/product/create" element={<CreateProductForm/>}></Route>
             <Route path="/products" element={<ProductTable/>}></Route>
+            <Route path="/products/:productId" element={<UpdateProductForm/>}></Route>
             <Route path="/orders" element={<OrderTable/>}></Route>
           </Routes>
         </div>

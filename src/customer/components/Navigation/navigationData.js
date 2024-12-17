@@ -85,9 +85,9 @@ export const navigation = {
               { name: 'Mens Kurtas', id: 'mens_kurta' },
               { name: 'Shirt', id: 'shirt' },
               { name: 'Men Jeans', id: 'men_jeans' },
-              { name: 'Sweaters', id: '#' },
+              { name: 'Sweaters', id: 'Sweaters' },
               { name: 'T-Shirts', id: 't-shirt' },
-              { name: 'Jackets', id: '#' },
+              { name: 'Jackets', id: 'Jackets' },
               { name: 'Activewear', id: '#' },
               
             ],
@@ -96,12 +96,12 @@ export const navigation = {
             id: 'accessories',
             name: 'Accessories',
             items: [
-              { name: 'Watches', id: '#' },
-              { name: 'Wallets', id: '#' },
-              { name: 'Bags', id: '#' },
-              { name: 'Sunglasses', id: '#' },
-              { name: 'Hats', id: '#' },
-              { name: 'Belts', id: '#' },
+              { name: 'Watches', id: 'Watches' },
+              { name: 'Wallets', id: 'Wallets' },
+              { name: 'Bags', id: 'Bags' },
+              { name: 'Sunglasses', id: 'Sunglasses' },
+              { name: 'Hats', id: 'Hats' },
+              { name: 'Belts', id: 'Belts' },
             ],
           },
           {
@@ -119,6 +119,6 @@ export const navigation = {
     ],
     pages: [
       { name: 'Company', id: '/' },
-      { name: 'Stores', id: '/' },
+      { name: 'Stores', id: '/product' },
     ],
   }

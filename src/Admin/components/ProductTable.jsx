@@ -13,16 +13,22 @@ import {
 } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct, findProducts } from "../../State/Product/Action";
+import { deleteProduct, findProducts, updateProduct } from "../../State/Product/Action";
+import { useNavigate } from "react-router-dom";
 
 const ProductTable = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((store) => store);
+  const navigate = useNavigate();
 
   console.log("products ---- ", products);
 
   const handleProductDelete=(productId)=>{
     dispatch(deleteProduct(productId))
+  }
+
+  const handleProductUpdate=(productId)=>{
+    navigate(`/admin/products/${productId}`)
   }
 
   useEffect(() => {
@@ -54,8 +60,8 @@ const ProductTable = () => {
                 <TableCell align="left">ID</TableCell>
                 <TableCell align="left">Category</TableCell>
                 <TableCell align="left">Price</TableCell>
-                <TableCell align="left">Quantity</TableCell>
-
+                <TableCell align="left">Update</TableCell>
+               
                 <TableCell align="left">Delete</TableCell>
               </TableRow>
             </TableHead>
@@ -76,7 +82,9 @@ const ProductTable = () => {
                   <TableCell align="left">{item.id}</TableCell>
                   <TableCell align="left">{item.category.name}</TableCell>
                   <TableCell align="left">{item.price}</TableCell>
-                  <TableCell align="left">{item.quantity}</TableCell>
+                  <TableCell align="left"> 
+                    <Button onClick={()=>handleProductUpdate(item.id)} variant="outlined">Update</Button>
+                    </TableCell>
 
                   <TableCell align="left">
                     <Button onClick={()=>handleProductDelete(item.id)} variant="outlined">Delete</Button>
@@ -90,5 +98,6 @@ const ProductTable = () => {
     </div>
   );
 };
+
 
 export default ProductTable;

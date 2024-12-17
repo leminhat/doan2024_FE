@@ -19,7 +19,7 @@ const LoginForm = () => {
       email:data.get("email"),
       password:data.get("password"),
     }
-    dispatch(login(userData))
+    dispatch(login(userData,navigate))
     console.log("userData", userData);
   }
   

@@ -1,11 +1,15 @@
 import axios from "axios";
 import { API_BASE_URL } from "../../config/apiConfig";
 import { FORGOT_PASS_FAILURE, FORGOT_PASS_REQUEST, GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "./ActionType";
+import { jwtDecode } from 'jwt-decode';
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 const token = localStorage.getItem("jwt");
+
 const registerRequest=()=>({type:REGISTER_REQUEST});
 const registerSuccesss=(user)=>({type:REGISTER_SUCCESS,payload:user});
 const registerFailure=(error)=>({type:REGISTER_FAILURE,payload:error});
+
 
 export const register = (userData)=> async (dispatch)=>{
     dispatch(registerRequest())
@@ -28,14 +32,22 @@ const loginRequest=()=>({type:LOGIN_REQUEST});
 const loginSuccesss=(user)=>({type:LOGIN_SUCCESS,payload:user});
 const loginFailure=(error)=>({type:LOGIN_FAILURE,payload:error});
 
-export const login = (userData) => async (dispatch)=>{
+export const login = (userData, navigate) => async (dispatch)=>{
     dispatch(loginRequest())
-
     try {
+      
         const response = await axios.post(`${API_BASE_URL}/auth/signin`, userData)
         const user = response.data;
+        console.log(user.jwt)
         if(user.jwt){
+
             localStorage.setItem("jwt", user.jwt)
+            const decoded = jwtDecode(user.jwt); 
+            console.log(decoded.roles)
+            localStorage.setItem("roles", decoded.roles)
+            if(decoded.roles === "ROLE_ADMIN"){
+                navigate("/admin")
+            } 
         }
         // console.log("user",user)
         // alert("dang nhap thanh cong")
@@ -43,6 +55,7 @@ export const login = (userData) => async (dispatch)=>{
 
     } catch (error) {
         dispatch(loginFailure(error.message))
+        console.log(error.message)
     }
 }
 
@@ -53,10 +66,8 @@ export const forgotPass = userData => async (dispatch)=>{
     dispatch(forgotPassRequest())
 
     try {
-        //  
         const response = await axios.post(`${API_BASE_URL}/auth/forgotpass`, userData)
-        const user = response.data;
-        
+        const user = response.data; 
         console.log("user",user)
         // dispatch(loginSuccesss(user.jwt))
 

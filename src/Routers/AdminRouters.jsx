@@ -1,8 +1,12 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Router } from 'react-router-dom'
 import Admin from '../Admin/components/Admin'
+import PrivateRoute from './PrivateRoute';
 
 const AdminRouters = () => {
+
+  const roles = localStorage.getItem("roles")
+  
   return (
     <div>
         <Route>
@@ -10,6 +14,8 @@ const AdminRouters = () => {
         </Route>
     </div>
   )
+
+ 
 }
 
 export default AdminRouters
